@@ -27,9 +27,21 @@ public class Field {
         moveBall(ball.getDX(), ball.getDY());
     }
     
+    //under construction
     public void moveBall(int dx, int dy) {
         
-        ball.setLocation(ball.getX() + dx, ball.getY() + dy);
+        int futureLeft = ball.getLeftEdgeX() + dx;
+        int futureRight = ball.getRightEdgeX() + dx;
+        
+        int futureHigh = ball.getHighEdgeY() + dy;
+        int futureLow = ball.getLowEdgeY() + dy;
+        
+        int curdx = dx;
+        int curdy = dy;
+        
+        if(futureLeft <= 0) {
+            
+        }
         
     }
     
