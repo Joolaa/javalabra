@@ -24,6 +24,12 @@ public class Field {
     }
     
     public void moveBall() {
+        moveBall(ball.getDX(), ball.getDY());
+    }
+    
+    public void moveBall(int dx, int dy) {
+        
+        ball.setLocation(ball.getX() + dx, ball.getY() + dy);
         
     }
     

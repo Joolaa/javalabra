@@ -83,7 +83,7 @@ public class Ball {
      * @return Horizontal coordinate
      */
     public int getRightEdgeX() {
-        return x;
+        return x + width;
     }
     
     /**
@@ -91,7 +91,7 @@ public class Ball {
      * @return Horizontal coordinate
      */
     public int getLeftEdgeX() {
-        return x + width;
+        return x;
     }
     
     public void setHeightAndWidth(int height, int width) {
