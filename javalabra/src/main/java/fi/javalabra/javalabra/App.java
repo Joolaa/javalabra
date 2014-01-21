@@ -1,13 +1,13 @@
 package fi.javalabra.javalabra;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import fi.javalabra.gwindow.Gamewindow;
+import javax.swing.SwingUtilities;
+
+public class App {
+    public static void main( String[] args ) {
+        
+        Gamewindow w = new Gamewindow();
+        SwingUtilities.invokeLater(w);
+        
     }
 }

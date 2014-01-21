@@ -1,3 +1,8 @@
 16.1
 
 1.5 tuntia, projektin aloitus.
+
+20.1
+
+1.5 tuntia, koodauksen aloitus ja graafisiin käyttöliittymiin liittyvien
+asioiden kertaus.
