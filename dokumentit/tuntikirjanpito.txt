@@ -6,3 +6,8 @@
 
 1.5 tuntia, koodauksen aloitus ja graafisiin käyttöliittymiin liittyvien
 asioiden kertaus.
+
+21.1
+
+yhteensä varmaan n. 4 tuntia, koodattu pelin logiikkaa ja paljon aikaa
+käytetty suunnitteluun
