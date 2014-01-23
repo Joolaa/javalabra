@@ -15,3 +15,8 @@ käytetty suunnitteluun
 22.1-23.1 (vuorokauden vaihde)
 
 noin 2 tuntia pallon liikutuksen pohdiskeluun ja väsäämiseen
+
+23.1
+
+5 tuntia. Deadlineen vaadittavat asiat, testien ja koodin tekeminen ja
+hiominen.
