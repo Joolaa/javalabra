@@ -39,10 +39,32 @@ public class Field {
         int curdx = dx;
         int curdy = dy;
         
-        if(futureLeft <= 0) {
+        if(futureHigh <= 0) {
             
+            //reverse the remaining vertical velocity vector
+            curdy = - futureHigh;
+            //split the horizontal velocity vector with the same ratio as
+            //the verical one
+            curdx = ratioOfVectors(dx, Math.abs(ball.getHighEdgeY()),
+                    Math.abs(futureHigh));
+            
+            //place the ball next to the wall
+            ball.setLocation(ball.getX() + (dx - curdx), 0);
+            
+            //calculate rest of the movement of the ball
+            moveBall(curdx, curdy);
+            
+        } else {
+            
+            ball.setLocation(ball.getX() + dx, ball.getY() + dy);
         }
         
+    }
+    
+    //return a perpendicular vector which is split with this ratio
+    private int ratioOfVectors(int splittee, int numerator, int denominator) {
+        
+        return splittee * denominator / (denominator + numerator);
     }
     
 }

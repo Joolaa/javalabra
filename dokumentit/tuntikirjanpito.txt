@@ -11,3 +11,7 @@ asioiden kertaus.
 
 yhteensä varmaan n. 4 tuntia, koodattu pelin logiikkaa ja paljon aikaa
 käytetty suunnitteluun
+
+22.1-23.1 (vuorokauden vaihde)
+
+noin 2 tuntia pallon liikutuksen pohdiskeluun ja väsäämiseen
