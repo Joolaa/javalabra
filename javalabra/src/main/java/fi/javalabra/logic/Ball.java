@@ -75,7 +75,7 @@ public class Ball {
      * @return Vertical coordinate
      */
     public int getLowEdgeY() {
-        return y + height;
+        return y + height - 1;
     }
     
     /**
@@ -83,7 +83,7 @@ public class Ball {
      * @return Horizontal coordinate
      */
     public int getRightEdgeX() {
-        return x + width;
+        return x + width - 1;
     }
     
     /**
@@ -107,6 +107,22 @@ public class Ball {
     public void setVelocityVector(int dx, int dy) {
         this.dx = dx;
         this.dy = dy;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        
+        if(o == null || !o.getClass().equals(this.getClass()))
+            return false;
+        
+        Ball b = (Ball) o;
+        
+        if(b.getX() == x && b.getY() == y && b.getHeight() == height &&
+                b.getWidth() == width && b.getDX() == dx && b.getDY() == dy)
+            return true;
+        
+        return false;
+        
     }
     
     
