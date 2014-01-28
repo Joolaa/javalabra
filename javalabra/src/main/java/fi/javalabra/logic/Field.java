@@ -7,6 +7,7 @@ public class Field {
     private int width;
     
     private Ball ball;
+    private Paddle paddle;
     
     /**
      * Construct the playing field by specifying the height
@@ -15,12 +16,19 @@ public class Field {
      * @param width Width of the field
      * @param ball Current ball on the field
      */
-    public Field(int height, int width, Ball ball) {
+    public Field(int height, int width, Ball ball, Paddle paddle) {
         
         this.height = height;
         this.width = width;
         this.ball = ball;
+        this.paddle = paddle;
         
+    }
+    
+    //Only for testing purposes
+    public Field(int height, int width, Ball ball) {
+        
+        this(height, width, ball, null);
     }
     
     public void moveBall() {
@@ -59,32 +67,44 @@ public class Field {
             
             ball.setLocation(0, ball.getY() + (dy - curdy));
             
-        } else if(futureLow >= this.height) {
+        } else if(futureLow >= height) {
             
-            curdy = - (futureLow - (this.height - 1));
+            curdy = - (futureLow - (height - 1));
             curdx = ratioOfVectors(dx, 
-                    Math.abs((this.height - 1) - ball.getLowEdgeY()), 
-                    Math.abs((this.height - 1) - futureLow));
+                    Math.abs((height - 1) - ball.getLowEdgeY()), 
+                    Math.abs((height - 1) - futureLow));
             
             ball.setLocation(ball.getX() + (dx - curdx),
-                    this.height - ball.getHeight());
+                    height - ball.getHeight());
             
             //System.out.println(ball.getX() + ", " + ball.getY());
             //System.out.println(dx + ", " + dy);
             //System.out.println(curdx + ", " + curdy);
             
-        } else if(futureRight >= this.width) {
+        } else if(futureRight >= width) {
             
-            curdx = - (futureRight - (this.width - 1));
+            curdx = - (futureRight - (width - 1));
             curdy = ratioOfVectors(dy,
-                    Math.abs((this.width - 1) - ball.getRightEdgeX()), 
-                    Math.abs((this.width - 1) - futureRight));
+                    Math.abs((width - 1) - ball.getRightEdgeX()), 
+                    Math.abs((width - 1) - futureRight));
             
-            ball.setLocation(this.width - ball.getWidth(),
+            ball.setLocation(width - ball.getWidth(),
                     ball.getY() + (dy - curdy));
             
             
-        } else {
+        } else if(futureLow >= paddle.getY() && 
+                ((futureRight > paddle.getX() &&
+                futureRight < paddle.getX() + paddle.getWidth()) ||
+                (futureLeft < paddle.getX() + paddle.getWidth() &&
+                futureLeft > paddle.getX()))) {
+            
+            curdy = - (futureLow - paddle.getY());
+            curdx = ratioOfVectors(dx, 
+                    Math.abs(paddle.getY() - ball.getLowEdgeY()),
+                    Math.abs(paddle.getY() - futureLow));
+            ball.setLocation(ball.getX() + (dx - curdx),
+                    paddle.getY() - ball.getHeight() - 1);
+        } else { 
             
             ball.setLocation(ball.getX() + dx, ball.getY() + dy);
             
@@ -105,6 +125,36 @@ public class Field {
         return splittee * denominator / (denominator + numerator);
     }
     
+    /**
+     * Move the paddle along the x-axis by the amount specified.
+     * Can't move the paddle out of bounds.
+     * @param dx negative value to move left, positive value to move right
+     */
+    public void movePaddle(int dx) {
+        
+        if(paddle.getX() + dx < 0)
+            paddle.setX(0);
+        else if(paddle.getX() + paddle.getWidth() + dx >= width)
+            paddle.setX(width - paddle.getWidth());
+        else
+            paddle.setX(paddle.getX() + dx);
+    }
+    
+    /**
+     * Move the paddle to specified x-coordinate.
+     * Can't move the paddle out of bounds
+     * @param x the x-coordinate to move the paddle to
+     */
+    public void placePaddle(int x) {
+        
+        if(x < 0)
+            paddle.setX(0);
+        else if(x + paddle.getWidth() >= width)
+            paddle.setX(width - paddle.getWidth());
+        else
+            paddle.setX(x);
+    }
+    
     public int getHeight() {
         return height;
     }
@@ -114,7 +164,7 @@ public class Field {
     }
     
     public Ball getBall() {
-        return this.ball;
+        return ball;
     }
     
 }
