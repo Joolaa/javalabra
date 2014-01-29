@@ -92,11 +92,8 @@ public class Field {
                     ball.getY() + (dy - curdy));
             
             
-        } else if(futureLow >= paddle.getY() && 
-                ((futureRight > paddle.getX() &&
-                futureRight < paddle.getX() + paddle.getWidth()) ||
-                (futureLeft < paddle.getX() + paddle.getWidth() &&
-                futureLeft > paddle.getX()))) {
+        } else if(paddle.collidesWithHighEdge(futureLow, futureLeft,
+                futureRight)) {
             
             curdy = - (futureLow - paddle.getY());
             curdx = ratioOfVectors(dx, 
