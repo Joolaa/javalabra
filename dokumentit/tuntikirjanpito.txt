@@ -32,3 +32,7 @@ noin tunti
 30.1
 
 noin 7 tuntia
+
+30.1 - 31.1 (vuorokauden vaihde)
+
+noin 2.5 tuntia vielä lisää

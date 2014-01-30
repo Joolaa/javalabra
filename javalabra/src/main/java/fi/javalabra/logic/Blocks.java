@@ -67,15 +67,15 @@ public class Blocks {
             first = null;
             last = null;
         } else if(node == first) {
-            
+
             first = first.next;
             first.prev = null;
         } else if(node == last) {
-            
+
             last = last.prev;
             last.next = null;
         } else {
-            
+
             node.next.prev = node.prev;
             node.prev.next = node.next;
         }
@@ -128,6 +128,20 @@ public class Blocks {
     public void rewind() {
         
         current = null;
+    }
+    
+    public int size() {
+        
+        BlockNode point = first;
+        
+        int counter = 0;
+        
+        while(point != null) {
+            counter++;
+            point = point.next;
+        }
+        
+        return counter;
     }
     
 }

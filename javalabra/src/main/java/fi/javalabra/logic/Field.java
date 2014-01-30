@@ -40,7 +40,6 @@ public class Field {
         moveBall(ball.getDX(), ball.getDY());
     }
     
-    //under construction
     public void moveBall(int dx, int dy) {
         
         int futureLeft = ball.getLeftEdgeX() + dx;
@@ -49,8 +48,16 @@ public class Field {
         int futureHigh = ball.getHighEdgeY() + dy;
         int futureLow = ball.getLowEdgeY() + dy;
         
-        if(blocks != null && blocks.getFirst() != null)
-            handleBlockCollisions(ball, dy, dx);
+        //System.out.println("1. ball: (" + ball.getX() + ", "
+        //        + ball.getY() + ") velocity: (" + dx + ", " + dy + ")");
+        
+        if(blocks != null && blocks.getFirst() != null) {
+            boolean hitBlock = handleBlockCollisions(ball, dy, dx);
+            
+            if(hitBlock)
+                return;
+        }
+        
         
         if(futureHigh < 0) {
             
@@ -96,7 +103,7 @@ public class Field {
         return splittee * denominator / (denominator + numerator);
     }
     
-    private void handleBlockCollisions(Ball ball, int verticalMomentum,
+    private boolean handleBlockCollisions(Ball ball, int verticalMomentum,
             int horizontalMomentum) {
         
         
@@ -116,7 +123,7 @@ public class Field {
                 
                 blocks.deleteCurrent();
                 blocks.rewind();
-                return;
+                return true;
                 
             } else if(current.collidesWithHighEdge(ball.getLowEdgeY(),
                     ball.getLowEdgeY() + verticalMomentum,
@@ -128,7 +135,7 @@ public class Field {
                 
                 blocks.deleteCurrent();
                 blocks.rewind();
-                return;
+                return true;
                 
             } else if(current.collidesWithLeftEdge(ball.getRightEdgeX(),
                     ball.getRightEdgeX() + horizontalMomentum,
@@ -140,7 +147,7 @@ public class Field {
                 
                 blocks.deleteCurrent();
                 blocks.rewind();
-                return;
+                return true;
             } else if(current.collidesWithRightEdge(ball.getLeftEdgeX(),
                     ball.getLeftEdgeX() + horizontalMomentum,
                     ball.getLowEdgeY() + verticalMomentum,
@@ -151,14 +158,15 @@ public class Field {
                 
                 blocks.deleteCurrent();
                 blocks.rewind();
-                return;
+                return true;
             }
                 
-            System.out.println("---");
             current = blocks.getNext();
         }
         
         blocks.rewind();
+        
+        return false;
         
     }
     
@@ -180,6 +188,8 @@ public class Field {
                 lineY - edgeOffset);
         ball.setVelocityVector(ball.getDX(), - ball.getDY());
         
+        //System.out.println("(" + curdx + ", " + curdy + ")");
+        
         moveBall(curdx, curdy);
         
     }
@@ -199,8 +209,6 @@ public class Field {
                 ball.getY() + (verticalMomentum - curdy));
         ball.setVelocityVector(- ball.getDX(), ball.getDY());
         
-        System.out.println(ball.getX());
-        System.out.println("(" + curdx + ", " + curdy + ")");
         
         moveBall(curdx, curdy);
     }

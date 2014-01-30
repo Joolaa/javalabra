@@ -62,8 +62,9 @@ public class BlocksTest {
         
         bs.getNext();
         bs.getNext();
-        
+        assertEquals(bs.size(), 3);
         bs.deleteCurrent();
+        assertEquals(bs.size(), 2);
         
         bs.rewind();
         
@@ -71,7 +72,7 @@ public class BlocksTest {
         assertEquals(bs.getNext(), b0);
         
         bs.deleteCurrent();
-        
+        assertEquals(bs.size(), 1);
         assertEquals(bs.getLast(), b2);
     }
     
@@ -93,6 +94,18 @@ public class BlocksTest {
     public void leftCollision() {
         
         assertEquals(b2.collidesWithLeftEdge(16, 17, 31, 29), true);
+    }
+    
+    @Test
+    
+    public void length() {
+        
+        assertEquals(bs.size(), 0);
+        
+        bs.insert(b0);
+        bs.insert(b1);
+        
+        assertEquals(bs.size(), 2);
     }
     
 }
