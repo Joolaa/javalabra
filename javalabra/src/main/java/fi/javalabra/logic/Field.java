@@ -33,7 +33,7 @@ public class Field {
     //Only for testing purposes
     public Field(int height, int width, Ball ball) {
         
-        this(height, width, ball, new Paddle(0, 0, 0, 0), new Blocks());
+        this(height, width, ball, null, null);
     }
     
     public void moveBall() {
@@ -49,7 +49,8 @@ public class Field {
         int futureHigh = ball.getHighEdgeY() + dy;
         int futureLow = ball.getLowEdgeY() + dy;
         
-        handleBlockCollisions(ball, dy, dx);
+        if(blocks != null && blocks.getFirst() == null)
+            handleBlockCollisions(ball, dy, dx);
         
         if(futureHigh < 0) {
             
@@ -77,13 +78,13 @@ public class Field {
         } else if(futureRight >= width) {
                      
             handleHorizontalCollision(ball, width - 1, dy, dx);
-        } else if(paddle.collidesWithHighEdge(ball.getLowEdgeY(), futureLow, 
+        } else if(paddle != null && paddle.collidesWithHighEdge(ball.getLowEdgeY(), futureLow, 
                 futureLeft, futureRight)) {
             
             handleVerticalCollision(ball, paddle.getY(), dy, dx);
-        }
-            
+        } else {
             ball.setLocation(ball.getX() + dx, ball.getY() + dy);
+        }
         
     }
     
@@ -97,6 +98,7 @@ public class Field {
     
     private void handleBlockCollisions(Ball ball, int verticalMomentum,
             int horizontalMomentum) {
+        
         
         blocks.rewind();
         
