@@ -77,12 +77,15 @@ public class FieldTest {
     @Test
     public void ballCollidesSeveralTimes() {
         
+
         b.setVelocityVector(- 11, 0);
         
         f.moveBall();
         
+
         assertEquals(b.getX(), 4);
         assertEquals(b.getY(), 3);
+        
     }
     
     @Test

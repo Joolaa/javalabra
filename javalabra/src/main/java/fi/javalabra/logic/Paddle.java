@@ -43,13 +43,17 @@ public class Paddle {
     /**
      * Returns true if the ball is about to collide with the high edge
      * of the paddle.
-     * @param ballLow coordinates of the low edge of the ball
-     * @param ballLeft coordinates of the left edge of the ball
-     * @param ballRight coordinates of the right edge of the ball
+     * @param prevBallLow coordinate before collision
+     * @param ballLow coordinate of the low edge of the ball
+     * @param ballLeft coordinate of the left edge of the ball
+     * @param ballRight coordinate of the right edge of the ball
      * @return true if collision is about to happen, false otherwise
      */
-    public boolean collidesWithHighEdge(int ballLow, int ballLeft,
-            int ballRight) {
+    public boolean collidesWithHighEdge(int prevBallLow, int ballLow,
+            int ballLeft, int ballRight) {
+        
+        if(prevBallLow > y)
+            return false;
         
         if(ballLow >= y) {
             if(ballRight > x && ballRight < x + width)

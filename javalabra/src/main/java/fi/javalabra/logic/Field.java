@@ -9,26 +9,31 @@ public class Field {
     private Ball ball;
     private Paddle paddle;
     
+    private Blocks blocks;
+    
     /**
      * Construct the playing field by specifying the height
      * and width of the field
      * @param height Height of the field
      * @param width Width of the field
      * @param ball Current ball on the field
+     * @param paddle Paddle to play with
      */
-    public Field(int height, int width, Ball ball, Paddle paddle) {
+    public Field(int height, int width, Ball ball, Paddle paddle,
+            Blocks blocks) {
         
         this.height = height;
         this.width = width;
         this.ball = ball;
         this.paddle = paddle;
+        this.blocks = blocks;
         
     }
     
     //Only for testing purposes
     public Field(int height, int width, Ball ball) {
         
-        this(height, width, ball, null);
+        this(height, width, ball, new Paddle(0, 0, 0, 0), new Blocks());
     }
     
     public void moveBall() {
@@ -44,73 +49,41 @@ public class Field {
         int futureHigh = ball.getHighEdgeY() + dy;
         int futureLow = ball.getLowEdgeY() + dy;
         
-        int curdx = dx;
-        int curdy = dy;
+        handleBlockCollisions(ball, dy, dx);
         
         if(futureHigh < 0) {
             
             //reverse the remaining vertical velocity vector
-            curdy = - futureHigh;
+            //curdy = - futureHigh;
             //split the horizontal velocity vector with the same ratio as
             //the verical one
-            curdx = ratioOfVectors(dx, Math.abs(ball.getHighEdgeY()),
-                    Math.abs(futureHigh));
+            //curdx = ratioOfVectors(dx, Math.abs(ball.getHighEdgeY()),
+            //        Math.abs(futureHigh));
             
             //place the ball next to the wall
-            ball.setLocation(ball.getX() + (dx - curdx), 0);
+            //ball.setLocation(ball.getX() + (dx - curdx), 0);
+            
+            handleVerticalCollision(ball, 0, dy, dx);
             
         } else if(futureLeft < 0) {
             
-            curdx = -futureLeft;
-            curdy = ratioOfVectors(dy, Math.abs(ball.getLeftEdgeX()), 
-                    Math.abs(futureLeft));
             
-            ball.setLocation(0, ball.getY() + (dy - curdy));
+            handleHorizontalCollision(ball, 0, dy, dx);
             
         } else if(futureLow >= height) {
             
-            curdy = - (futureLow - (height - 1));
-            curdx = ratioOfVectors(dx, 
-                    Math.abs((height - 1) - ball.getLowEdgeY()), 
-                    Math.abs((height - 1) - futureLow));
-            
-            ball.setLocation(ball.getX() + (dx - curdx),
-                    height - ball.getHeight());
-            
-            //System.out.println(ball.getX() + ", " + ball.getY());
-            //System.out.println(dx + ", " + dy);
-            //System.out.println(curdx + ", " + curdy);
+            handleVerticalCollision(ball, height - 1, dy, dx);
             
         } else if(futureRight >= width) {
+                     
+            handleHorizontalCollision(ball, width - 1, dy, dx);
+        } else if(paddle.collidesWithHighEdge(ball.getLowEdgeY(), futureLow, 
+                futureLeft, futureRight)) {
             
-            curdx = - (futureRight - (width - 1));
-            curdy = ratioOfVectors(dy,
-                    Math.abs((width - 1) - ball.getRightEdgeX()), 
-                    Math.abs((width - 1) - futureRight));
-            
-            ball.setLocation(width - ball.getWidth(),
-                    ball.getY() + (dy - curdy));
-            
-            
-        } else if(paddle.collidesWithHighEdge(futureLow, futureLeft,
-                futureRight)) {
-            
-            curdy = - (futureLow - paddle.getY());
-            curdx = ratioOfVectors(dx, 
-                    Math.abs(paddle.getY() - ball.getLowEdgeY()),
-                    Math.abs(paddle.getY() - futureLow));
-            ball.setLocation(ball.getX() + (dx - curdx),
-                    paddle.getY() - ball.getHeight() - 1);
-        } else { 
+            handleVerticalCollision(ball, paddle.getY(), dy, dx);
+        }
             
             ball.setLocation(ball.getX() + dx, ball.getY() + dy);
-            
-            return;
-        }
-        
-        //calculate rest of the movement of the ball
-        ball.setVelocityVector(curdx, curdy);
-        moveBall();
         
     }
     
@@ -120,6 +93,111 @@ public class Field {
         if(numerator + denominator == 0)
             return splittee;
         return splittee * denominator / (denominator + numerator);
+    }
+    
+    private void handleBlockCollisions(Ball ball, int verticalMomentum,
+            int horizontalMomentum) {
+        
+        blocks.rewind();
+        
+        Block current = blocks.getNext();
+        
+        while(current != null) {
+            
+            if(current.collidesWithLowEdge(ball.getHighEdgeY(),
+                    ball.getHighEdgeY() + verticalMomentum,
+                    ball.getLeftEdgeX() + horizontalMomentum,
+                    ball.getRightEdgeX() + horizontalMomentum)) {
+                
+                handleVerticalCollision(ball, current.getLowEdgeY(),
+                        verticalMomentum, horizontalMomentum);
+                blocks.deleteCurrent();
+                blocks.rewind();
+                return;
+                
+            } else if(current.collidesWithHighEdge(ball.getLowEdgeY(),
+                    ball.getLowEdgeY() + verticalMomentum,
+                    ball.getLeftEdgeX() + horizontalMomentum,
+                    ball.getRightEdgeX() + horizontalMomentum)) {
+                
+                handleVerticalCollision(ball, current.getHighEdgeY(), 
+                        verticalMomentum, horizontalMomentum);
+                
+                blocks.deleteCurrent();
+                blocks.rewind();
+                return;
+                
+            } else if(current.collidesWithLeftEdge(ball.getRightEdgeX(),
+                    ball.getRightEdgeX() + horizontalMomentum,
+                    ball.getLowEdgeY() + verticalMomentum,
+                    ball.getHighEdgeY() + verticalMomentum)) {
+                
+                handleHorizontalCollision(ball, current.getLeftEdgeX(), 
+                        verticalMomentum, horizontalMomentum);
+                
+                blocks.deleteCurrent();
+                blocks.rewind();
+                return;
+            } else if(current.collidesWithRightEdge(ball.getLeftEdgeX(),
+                    ball.getLeftEdgeX() + horizontalMomentum,
+                    ball.getLowEdgeY() + verticalMomentum,
+                    ball.getHighEdgeY() + verticalMomentum)) {
+                
+                handleHorizontalCollision(ball, current.getRightEdgeX(), 
+                        verticalMomentum, horizontalMomentum);
+                
+                blocks.deleteCurrent();
+                blocks.rewind();
+                return;
+            }
+                
+           
+            current = blocks.getNext();
+        }
+        
+    }
+    
+    //lineY, Y coordinate of the line to collide with
+    private void handleVerticalCollision(Ball ball, int lineY, 
+            int verticalMomentum, int horizontalMomentum) {
+        
+        //the dimensions of the ball have to be taken into account
+        int edgeOffset = ball.getDY() <= 0 ? 0 : ball.getHeight() - 1;
+        
+        //calculate intra-tick movement vector
+        int curdy = - (ball.getY() + verticalMomentum - (lineY - edgeOffset));
+        int curdx = ratioOfVectors(horizontalMomentum,
+                Math.abs(ball.getY() + edgeOffset), 
+                Math.abs(ball.getY() + edgeOffset + verticalMomentum));
+        
+        
+        ball.setLocation(ball.getX() + (horizontalMomentum - curdx),
+                lineY - edgeOffset);
+        ball.setVelocityVector(ball.getDX(), - ball.getDY());
+        
+        moveBall(curdx, curdy);
+        
+    }
+    
+    //lineX, X coordinate of the line to collide with
+    private void handleHorizontalCollision(Ball ball, int lineX,
+            int verticalMomentum, int horizontalMomentum) {
+        
+        int edgeOffset = ball.getDX() <= 0 ? 0 : ball.getWidth() - 1;
+        
+        int curdx = - (ball.getX() + horizontalMomentum - (lineX - edgeOffset));
+        int curdy = ratioOfVectors(verticalMomentum,
+                Math.abs(ball.getX() + edgeOffset), 
+                Math.abs(ball.getX() + edgeOffset + horizontalMomentum));
+        
+        ball.setLocation(lineX - edgeOffset, 
+                ball.getY() + (verticalMomentum - curdy));
+        ball.setVelocityVector(- ball.getDX(), ball.getDY());
+        
+        System.out.println(ball.getX());
+        System.out.println("(" + curdx + ", " + curdy + ")");
+        
+        moveBall(curdx, curdy);
     }
     
     /**
