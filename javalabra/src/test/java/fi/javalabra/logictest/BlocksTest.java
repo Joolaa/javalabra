@@ -75,4 +75,24 @@ public class BlocksTest {
         assertEquals(bs.getLast(), b2);
     }
     
+    @Test
+    public void lowCollision() {
+        
+        assertEquals(b0.collidesWithLowEdge(15, 11, 14, 16), true);
+        assertEquals(b0.collidesWithLowEdge(13, 11, 14, 16), false);
+    }
+    
+    @Test
+    public void highCollision() {
+        
+        assertEquals(b1.collidesWithHighEdge(16, 18, 1, 3), true);
+        assertEquals(b1.collidesWithHighEdge(16, 18, 7, 9), false);
+    }
+    
+    @Test
+    public void leftCollision() {
+        
+        assertEquals(b2.collidesWithLeftEdge(16, 17, 31, 29), true);
+    }
+    
 }

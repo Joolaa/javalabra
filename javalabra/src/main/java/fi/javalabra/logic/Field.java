@@ -49,7 +49,7 @@ public class Field {
         int futureHigh = ball.getHighEdgeY() + dy;
         int futureLow = ball.getLowEdgeY() + dy;
         
-        if(blocks != null && blocks.getFirst() == null)
+        if(blocks != null && blocks.getFirst() != null)
             handleBlockCollisions(ball, dy, dx);
         
         if(futureHigh < 0) {
@@ -113,6 +113,7 @@ public class Field {
                 
                 handleVerticalCollision(ball, current.getLowEdgeY(),
                         verticalMomentum, horizontalMomentum);
+                
                 blocks.deleteCurrent();
                 blocks.rewind();
                 return;
@@ -153,9 +154,11 @@ public class Field {
                 return;
             }
                 
-           
+            System.out.println("---");
             current = blocks.getNext();
         }
+        
+        blocks.rewind();
         
     }
     

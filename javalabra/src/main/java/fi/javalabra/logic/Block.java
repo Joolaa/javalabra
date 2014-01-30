@@ -35,10 +35,10 @@ public class Block {
     public boolean collidesWithHighEdge(int prevBallLow, int ballLow, 
             int ballLeft, int ballRight) {
         
-        if(prevBallLow > y)
+        if(prevBallLow >= y)
             return false;
         
-        if(ballLow > y) {
+        if(ballLow >= y) {
             if(ballRight >= x && ballRight < x + width)
                 return true;
             else if(ballLeft < x + width && ballLeft >= x)
@@ -51,10 +51,10 @@ public class Block {
     public boolean collidesWithLeftEdge(int prevBallRight, int ballRight,
             int ballLow, int ballHigh) {
         
-        if(prevBallRight > x)
+        if(prevBallRight >= x)
             return false;
         
-        if(ballRight > x) {
+        if(ballRight >= x) {
             if(ballHigh >= y && ballHigh < y + height)
                 return true;
             else if(ballLow >= y && ballLow < y + height)

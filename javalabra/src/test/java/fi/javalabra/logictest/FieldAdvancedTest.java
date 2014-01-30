@@ -39,9 +39,14 @@ public class FieldAdvancedTest {
         
     }
     
-    /*
     @Test
     public void collidesWithBlock() {
+       
+        assertTrue(bs.getFirst() != null);
+        assertTrue(bs.getLast() != null);
+        
+        assertEquals(bs.getNext(), b1);
+        assertEquals(bs.getNext(), b0);
         
         b.setVelocityVector(0, -3);
         
@@ -52,6 +57,5 @@ public class FieldAdvancedTest {
         //one gets destroyed
         assertEquals(bs.getFirst(), b0);
     }
-    */
     
 }

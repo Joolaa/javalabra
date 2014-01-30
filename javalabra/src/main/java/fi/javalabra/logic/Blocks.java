@@ -98,6 +98,9 @@ public class Blocks {
         if(current == null) {
             
             current = first;
+        } else if(current.next == null) {
+            current = null;
+            return null;
         } else {
             current = current.next;
         }
@@ -112,6 +115,9 @@ public class Blocks {
         if(current == null) {
             
             current = last;
+        } else if(current.prev == null) {
+            current = null;
+            return null;
         } else {
             current = current.prev;
         }
