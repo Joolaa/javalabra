@@ -56,7 +56,8 @@ public class FieldAdvancedTest {
         assertEquals(b.getY(), 6);
         //NOTE: assumes if ball hits two blocks simultaneously, only
         //one gets destroyed
-        //assertEquals(bs.size(), 1);
+        assertEquals(bs.size(), 1);
+        assertEquals(bs.getFirst(), b0);
     }
     
 }

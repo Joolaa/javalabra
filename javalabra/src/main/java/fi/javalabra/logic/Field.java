@@ -118,10 +118,10 @@ public class Field {
                     ball.getLeftEdgeX() + horizontalMomentum,
                     ball.getRightEdgeX() + horizontalMomentum)) {
                 
+                blocks.deleteCurrent();
                 handleVerticalCollision(ball, current.getLowEdgeY(),
                         verticalMomentum, horizontalMomentum);
                 
-                blocks.deleteCurrent();
                 blocks.rewind();
                 return true;
                 
@@ -130,10 +130,10 @@ public class Field {
                     ball.getLeftEdgeX() + horizontalMomentum,
                     ball.getRightEdgeX() + horizontalMomentum)) {
                 
+                blocks.deleteCurrent();
                 handleVerticalCollision(ball, current.getHighEdgeY(), 
                         verticalMomentum, horizontalMomentum);
                 
-                blocks.deleteCurrent();
                 blocks.rewind();
                 return true;
                 
@@ -142,10 +142,10 @@ public class Field {
                     ball.getLowEdgeY() + verticalMomentum,
                     ball.getHighEdgeY() + verticalMomentum)) {
                 
+                blocks.deleteCurrent();
                 handleHorizontalCollision(ball, current.getLeftEdgeX(), 
                         verticalMomentum, horizontalMomentum);
                 
-                blocks.deleteCurrent();
                 blocks.rewind();
                 return true;
             } else if(current.collidesWithRightEdge(ball.getLeftEdgeX(),
@@ -153,10 +153,10 @@ public class Field {
                     ball.getLowEdgeY() + verticalMomentum,
                     ball.getHighEdgeY() + verticalMomentum)) {
                 
+                blocks.deleteCurrent();
                 handleHorizontalCollision(ball, current.getRightEdgeX(), 
                         verticalMomentum, horizontalMomentum);
                 
-                blocks.deleteCurrent();
                 blocks.rewind();
                 return true;
             }
