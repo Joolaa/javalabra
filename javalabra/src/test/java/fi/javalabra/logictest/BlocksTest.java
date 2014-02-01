@@ -79,21 +79,39 @@ public class BlocksTest {
     @Test
     public void lowCollision() {
         
-        assertEquals(b0.collidesWithLowEdge(15, 11, 14, 16), true);
-        assertEquals(b0.collidesWithLowEdge(13, 11, 14, 16), false);
+        assertEquals(b0.collidesWithLowEdge(14, 13, 13, 13), true);
+        assertEquals(b0.collidesWithLowEdge(13, 12, 13, 13), false);
+        assertEquals(b0.collidesWithLowEdge(14, 13, 12, 12), false);
     }
+    /*
+     *              height, width, x, y
+        b0 = new Block(3, 5, 13, 11);
+        b1 = new Block(5, 7, 0, 17);
+        b2 = new Block(7, 13, 17, 29);
+    */
     
     @Test
     public void highCollision() {
         
-        assertEquals(b1.collidesWithHighEdge(16, 18, 1, 3), true);
-        assertEquals(b1.collidesWithHighEdge(16, 18, 7, 9), false);
+        assertEquals(b1.collidesWithHighEdge(16, 17, 6, 6), true);
+        assertEquals(b1.collidesWithHighEdge(17, 16, 6, 6), false);
+        assertEquals(b1.collidesWithHighEdge(16, 17, 7, 7), false);
     }
     
     @Test
     public void leftCollision() {
         
-        assertEquals(b2.collidesWithLeftEdge(16, 17, 31, 29), true);
+        assertEquals(b2.collidesWithLeftEdge(16, 17, 29, 29), true);
+        assertEquals(b2.collidesWithLeftEdge(16, 17, 28, 28), false);
+        assertEquals(b2.collidesWithLeftEdge(17, 18, 29, 29), false);
+    }
+    
+    @Test
+    public void rightCollision() {
+        
+        assertEquals(b0.collidesWithRightEdge(18, 17, 11, 11), true);
+        assertEquals(b0.collidesWithRightEdge(18, 17, 10, 10), false);
+        assertEquals(b0.collidesWithRightEdge(17, 18, 11, 11), false);
     }
     
     @Test

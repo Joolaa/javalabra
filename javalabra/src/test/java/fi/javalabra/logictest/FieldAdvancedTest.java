@@ -55,9 +55,31 @@ public class FieldAdvancedTest {
         
         assertEquals(b.getY(), 6);
         //NOTE: assumes if ball hits two blocks simultaneously, only
-        //one gets destroyed
+        //one will be destroyed
         assertEquals(bs.size(), 1);
         assertEquals(bs.getFirst(), b0);
+    }
+    
+    @Test
+    public void movePaddleTest() {
+        
+        int prevloc = p.getX();
+        
+        f.movePaddle(-2);
+        
+        assertEquals(p.getX(), prevloc - 2);
+        
+        f.placePaddle(9999999);
+        
+        assertEquals(p.getX(), f.getWidth() - p.getWidth());
+        
+        f.placePaddle(-1);
+        
+        assertEquals(p.getX(), 0);
+        f.movePaddle(-1);
+        assertEquals(p.getX(), 0);
+        f.movePaddle(9999);
+        assertEquals(p.getX(), f.getWidth()- p.getWidth());
     }
     
 }
