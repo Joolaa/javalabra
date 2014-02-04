@@ -95,4 +95,13 @@ public class Block {
     public int getRightEdgeX() {
         return x + width;
     }
+    
+    public int getWidth() {
+        
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
 }

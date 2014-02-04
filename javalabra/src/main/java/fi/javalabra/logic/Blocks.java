@@ -7,6 +7,10 @@ public class Blocks {
     
     private BlockNode current;
     
+    private boolean locked;
+    
+    private int size;
+    
     private class BlockNode {
         
         private BlockNode next;
@@ -20,6 +24,7 @@ public class Blocks {
             this.prev = prev;
             
             this.payload = payload;
+            
         }
     }
     
@@ -29,6 +34,10 @@ public class Blocks {
         this.last = null;
         
         this.current = null;
+        
+        this.locked = false;
+        
+        this.size = 0;
     }
     
     public void insert(Block block) {
@@ -49,6 +58,8 @@ public class Blocks {
             first = new BlockNode(second, null, block);
             second.prev = first;
         }
+        
+        size++;
     }
     
     public void deleteCurrent() {
@@ -66,6 +77,7 @@ public class Blocks {
             
             first = null;
             last = null;
+            
         } else if(node == first) {
 
             first = first.next;
@@ -79,6 +91,8 @@ public class Blocks {
             node.next.prev = node.prev;
             node.prev.next = node.next;
         }
+        
+        size--;
     }
     
     public Block getFirst() {
@@ -132,6 +146,7 @@ public class Blocks {
     
     public int size() {
         
+        /*
         BlockNode point = first;
         
         int counter = 0;
@@ -142,6 +157,21 @@ public class Blocks {
         }
         
         return counter;
+        */
+        
+        return size;
+    }
+    
+    public boolean getLocked() {
+        return locked;
+    }
+    
+    public void lock() {
+        locked = true;
+    }
+    
+    public void unlock() {
+        locked = false;
     }
     
 }
