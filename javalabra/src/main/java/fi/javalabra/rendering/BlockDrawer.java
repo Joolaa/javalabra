@@ -16,6 +16,9 @@ public class BlockDrawer {
     
     public void drawBlocks(Graphics graphics) {
         
+        if(blocks.size() < 1)
+            return;
+        
         if(blocks.getLocked())
             return;
         
@@ -40,7 +43,8 @@ public class BlockDrawer {
     }
     
     private void drawBlock(Graphics graphics, Block block) {
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(Color.getHSBColor(block.getHueCode(),
+                .1f, 1.f));
         graphics.fillRect(block.getLeftEdgeX(), block.getHighEdgeY(),
                 block.getWidth(), block.getHeight());
     }

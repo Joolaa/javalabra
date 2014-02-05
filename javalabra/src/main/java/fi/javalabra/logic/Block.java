@@ -1,5 +1,6 @@
 package fi.javalabra.logic;
 
+import java.util.Random;
 
 public class Block {
 
@@ -7,6 +8,8 @@ public class Block {
     private int width;
     private int x;
     private int y;
+    
+    private float hueCode;
 
     public Block(int height, int width, int x, int y) {
         
@@ -14,6 +17,10 @@ public class Block {
         this.width = width;
         this.x = x;
         this.y = y;
+        
+        Random random = new Random();
+        
+        this.hueCode = random.nextFloat();
     }
     
     public boolean collidesWithLowEdge(int prevBallHigh, int ballHigh,
@@ -103,5 +110,9 @@ public class Block {
     
     public int getHeight() {
         return height;
+    }
+    
+    public float getHueCode() {
+        return hueCode;
     }
 }

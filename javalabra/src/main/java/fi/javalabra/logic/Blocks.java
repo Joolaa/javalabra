@@ -97,10 +97,16 @@ public class Blocks {
     
     public Block getFirst() {
         
+        if(first == null)
+            return null;
+        
         return first.payload;
     }
     
     public Block getLast() {
+        
+        if(last == null)
+            return null;
         
         return last.payload;
     }

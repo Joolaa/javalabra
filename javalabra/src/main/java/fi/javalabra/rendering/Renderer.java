@@ -2,19 +2,21 @@ package fi.javalabra.rendering;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
-import fi.javalabra.logic.Blocks;
 import java.awt.Color;
 
 public class Renderer extends JPanel{
     
     private BlockDrawer blockDrawer;
     private BallDrawer ballDrawer;
+    private PaddleDrawer paddleDrawer;
     
 
-    public Renderer(BlockDrawer blockDrawer, BallDrawer ballDrawer) {
+    public Renderer(BlockDrawer blockDrawer, BallDrawer ballDrawer,
+            PaddleDrawer paddleDrawer) {
         super.setBackground(Color.BLACK);
         this.blockDrawer = blockDrawer;
         this.ballDrawer = ballDrawer;
+        this.paddleDrawer = paddleDrawer;
         
     }
     
@@ -22,9 +24,10 @@ public class Renderer extends JPanel{
     protected void paintComponent(Graphics graphics) {
         
         super.paintComponent(graphics);
+        
         blockDrawer.drawBlocks(graphics);
         ballDrawer.drawBall(graphics);
-        //graphics.fillRect(200, 300, 10, 50);
+        paddleDrawer.drawPaddle(graphics);
     }
     
     
