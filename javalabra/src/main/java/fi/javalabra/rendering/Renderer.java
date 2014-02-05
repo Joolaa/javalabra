@@ -8,11 +8,13 @@ import java.awt.Color;
 public class Renderer extends JPanel{
     
     private BlockDrawer blockDrawer;
+    private BallDrawer ballDrawer;
     
 
-    public Renderer(BlockDrawer blockDrawer) {
+    public Renderer(BlockDrawer blockDrawer, BallDrawer ballDrawer) {
         super.setBackground(Color.BLACK);
         this.blockDrawer = blockDrawer;
+        this.ballDrawer = ballDrawer;
         
     }
     
@@ -21,6 +23,7 @@ public class Renderer extends JPanel{
         
         super.paintComponent(graphics);
         blockDrawer.drawBlocks(graphics);
+        ballDrawer.drawBall(graphics);
         //graphics.fillRect(200, 300, 10, 50);
     }
     
