@@ -2,6 +2,12 @@ package fi.javalabra.logic;
 
 import java.util.Random;
 
+/**
+ * Field class which is responsible for wrapping up data associated 
+ * with game logic and essential game actions like collisions, moving the ball,
+ * and moving the paddle
+ * @author jola
+ */
 public class Field {
     
     private int height;

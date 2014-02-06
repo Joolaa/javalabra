@@ -3,6 +3,10 @@ package fi.javalabra.input;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class for handling keyboard input
+ * @author jola
+ */
 public class KeyboardControls implements KeyListener {
     
     private boolean paddleMovesLeft;

@@ -13,6 +13,10 @@ import fi.javalabra.logic.Field;
 import fi.javalabra.gwindow.Gamewindow;
 import fi.javalabra.input.KeyboardControls;
 
+/**
+ * Class which wraps up different components of the system
+ * @author jola
+ */
 public class Game {
     
     private int height;

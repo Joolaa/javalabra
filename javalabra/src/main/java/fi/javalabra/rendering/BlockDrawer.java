@@ -5,6 +5,10 @@ import fi.javalabra.logic.Block;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * This class handles drawing of the blocks
+ * @author jola
+ */
 public class BlockDrawer {
     
     private Blocks blocks;

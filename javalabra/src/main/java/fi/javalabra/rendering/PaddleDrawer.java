@@ -4,6 +4,10 @@ import fi.javalabra.logic.Paddle;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * This class handles drawing of the paddle
+ * @author jola
+ */
 public class PaddleDrawer {
     
     private Paddle paddle;

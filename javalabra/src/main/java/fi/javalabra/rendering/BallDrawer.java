@@ -4,6 +4,10 @@ import fi.javalabra.logic.Ball;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * This class handles drawing of the ball
+ * @author jola
+ */
 public class BallDrawer {
     
     private Ball ball;

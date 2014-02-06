@@ -1,6 +1,9 @@
 package fi.javalabra.logic;
 
-
+/**
+ * Class which mainly holds the data associated with the ball
+ * @author jola
+ */
 public class Ball {
     
     private int height;

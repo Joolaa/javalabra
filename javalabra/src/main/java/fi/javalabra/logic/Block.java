@@ -2,6 +2,11 @@ package fi.javalabra.logic;
 
 import java.util.Random;
 
+/**
+ * Class which mainly holds the data associated with blocks and 
+ * collision detection
+ * @author jola
+ */
 public class Block {
 
     private int height;

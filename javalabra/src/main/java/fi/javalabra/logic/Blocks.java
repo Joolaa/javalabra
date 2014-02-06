@@ -1,5 +1,9 @@
 package fi.javalabra.logic;
 
+/**
+ * This class wraps up all the blocks to a linked structure
+ * @author jola
+ */
 public class Blocks {
     
     private BlockNode first;
@@ -40,6 +44,10 @@ public class Blocks {
         this.size = 0;
     }
     
+    /**
+     * Insert a block to the list
+     * @param block the block to be inserted
+     */
     public void insert(Block block) {
         
         if(first == null) {
@@ -62,6 +70,9 @@ public class Blocks {
         size++;
     }
     
+    /**
+     * Delete the block which was last time returned by getNext() or getPrev()
+     */
     public void deleteCurrent() {
         
         delete(current);
@@ -95,6 +106,10 @@ public class Blocks {
         size--;
     }
     
+    /**
+     * Get the first block on the list
+     * @return the first block on the list
+     */
     public Block getFirst() {
         
         if(first == null)
@@ -103,6 +118,10 @@ public class Blocks {
         return first.payload;
     }
     
+    /**
+     * Get the last block on the list
+     * @return last block on the list
+     */
     public Block getLast() {
         
         if(last == null)
@@ -111,6 +130,13 @@ public class Blocks {
         return last.payload;
     }
     
+    /**
+     * Get the next block on the list. If not called before, or rewind() has
+     * been called since the last call or end of the list was reached,
+     * returns the first element on the list.
+     * @return the next element on the list, or null after the last element,
+     * but first after that
+     */
     public Block getNext() {
         if(first == null)
             return null;
@@ -128,6 +154,13 @@ public class Blocks {
         return current.payload;
     }
     
+    /**
+     * Get the previous block on the list. If not called before, or rewind() has
+     * been called since the last call or the start of the list was reached,
+     * returns the last element on the list.
+     * @return the previous element on the list,
+     * or null after the first element, but last after that
+     */
     public Block getPrev() {
         if(last == null)
             return null;
@@ -145,11 +178,20 @@ public class Blocks {
         return current.payload;
     }
     
+    /**
+     * Rewind the list pointer to null. This will cause the next getNext() call
+     * to return the first element and the next getPrev() call to return the
+     * last element.
+     */
     public void rewind() {
         
         current = null;
     }
     
+    /**
+     * Get the length of the list
+     * @return the length of the list
+     */
     public int size() {
         
         /*

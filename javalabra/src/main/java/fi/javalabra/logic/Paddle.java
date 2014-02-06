@@ -1,5 +1,10 @@
 package fi.javalabra.logic;
 
+/**
+ * This class is mainly responsible for holding data associated with 
+ * the paddle and collision detection
+ * @author jola
+ */
 public class Paddle {
     
     private int height;

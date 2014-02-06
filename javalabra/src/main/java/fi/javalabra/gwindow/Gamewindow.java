@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import fi.javalabra.rendering.Renderer;
 import fi.javalabra.input.KeyboardControls;
 
+/**
+ * Visual display window of the game
+ * @author jola
+ */
 public class Gamewindow implements Runnable {
     
     private JFrame frame;

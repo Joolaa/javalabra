@@ -4,6 +4,12 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * This class wraps up classes which draw individual elements and
+ * is responsible for providing the visualization of the game situation
+ * to the game window
+ * @author jola
+ */
 public class Renderer extends JPanel{
     
     private BlockDrawer blockDrawer;
