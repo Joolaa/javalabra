@@ -85,7 +85,8 @@ public class Field {
         } else if(futureRight >= width) {
                      
             handleHorizontalCollision(ball, width - 1, dy, dx);
-        } else if(paddle != null && paddle.collidesWithHighEdge(ball.getLowEdgeY(), futureLow, 
+        } else if(paddle != null && paddle
+                .collidesWithHighEdge(ball.getLowEdgeY(), futureLow, 
                 futureLeft, futureRight)) {
             
             handleVerticalCollision(ball, paddle.getY(), dy, dx);
@@ -253,6 +254,16 @@ public class Field {
     
     public Ball getBall() {
         return ball;
+    }
+    
+    public Paddle getPaddle() {
+        
+        return paddle;
+    }
+    
+    public Blocks getBlocks() {
+        
+        return blocks;
     }
     
 }

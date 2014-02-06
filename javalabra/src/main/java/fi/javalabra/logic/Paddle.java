@@ -52,10 +52,10 @@ public class Paddle {
     public boolean collidesWithHighEdge(int prevBallLow, int ballLow,
             int ballLeft, int ballRight) {
         
-        if(prevBallLow > y)
+        if(prevBallLow > y + height)
             return false;
         
-        if(ballLow >= y) {
+        if(ballLow >= y + 1) {
             if(ballRight > x && ballRight < x + width)
                 return true;
             else if(ballLeft < x + width && ballLeft > x)
@@ -64,5 +64,6 @@ public class Paddle {
         
         return false;
     }
+    
     
 }

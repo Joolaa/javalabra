@@ -5,22 +5,27 @@ import java.awt.Dimension;
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import fi.javalabra.rendering.Renderer;
-import fi.javalabra.rendering.BlockDrawer;
 
 public class Gamewindow implements Runnable {
     
     private JFrame frame;
     private Renderer renderer;
     
-    public Gamewindow(Renderer renderer) {
+    private int height;
+    private int width;
+    
+    public Gamewindow(int height, int width, Renderer renderer) {
         
         this.renderer = renderer;
+        
+        this.height = height;
+        this.width = width;
     }
     
     @Override
     public void run() {
         frame = new JFrame("Breakout");
-        frame.setPreferredSize(new Dimension(640, 480));
+        frame.setPreferredSize(new Dimension(width, height));
         
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
