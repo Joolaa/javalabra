@@ -1,5 +1,6 @@
 package fi.javalabra.logic;
 
+import java.util.Random;
 
 public class Field {
     
@@ -10,6 +11,8 @@ public class Field {
     private Paddle paddle;
     
     private Blocks blocks;
+    
+    private boolean randomizeVelocity;
     
     /**
      * Construct the playing field by specifying the height
@@ -27,6 +30,8 @@ public class Field {
         this.ball = ball;
         this.paddle = paddle;
         this.blocks = blocks;
+        
+        this.randomizeVelocity = false;
         
     }
     
@@ -54,8 +59,10 @@ public class Field {
         if(blocks != null && blocks.getFirst() != null) {
             boolean hitBlock = handleBlockCollisions(ball, dy, dx);
             
-            if(hitBlock)
+            if(hitBlock) {
+                velocityRandomizer(ball);
                 return;
+            }
         }
         
         
@@ -120,6 +127,7 @@ public class Field {
                     ball.getRightEdgeX() + horizontalMomentum)) {
                 
                 blocks.deleteCurrent();
+                
                 handleVerticalCollision(ball, current.getLowEdgeY(),
                         verticalMomentum, horizontalMomentum);
                 
@@ -264,6 +272,29 @@ public class Field {
     public Blocks getBlocks() {
         
         return blocks;
+    }
+    
+    public void setRandomizeVelocity(boolean randomizeVelocity) {
+        this.randomizeVelocity = randomizeVelocity;
+    }
+    
+    public void velocityRandomizer(Ball ball) {
+        
+        Random rng = new Random();
+        int rand = rng.nextInt(5);
+        
+        if(rand == 0) {
+            
+            if(ball.getDX() < 0)
+                ball.setVelocityVector(ball.getDX() - 1, ball.getDY());
+            else
+                ball.setVelocityVector(ball.getDX() + 1, ball.getDY());
+        } else if(rand == 1){
+            if (ball.getDY() < 0)
+                 ball.setVelocityVector(ball.getDX(), ball.getDY() - 1);
+            else 
+                 ball.setVelocityVector(ball.getDX(), ball.getDY() + 1);
+        }
     }
     
 }

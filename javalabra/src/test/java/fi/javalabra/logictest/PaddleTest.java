@@ -36,14 +36,14 @@ public class PaddleTest {
     @Test
     public void collisionWorks1() {
         
-        assertEquals(p.collidesWithHighEdge(33, 35, 89, 92), true);
+        assertEquals(p.collidesWithHighEdge(33, 36, 89, 92), true);
 
     }
     
     @Test
     public void collisionWorks2() {
         
-        assertEquals(p.collidesWithHighEdge(33, 35, 65, 71), true);
+        assertEquals(p.collidesWithHighEdge(33, 36, 65, 71), true);
         
         
     }

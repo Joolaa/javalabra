@@ -11,6 +11,7 @@ import fi.javalabra.logic.Paddle;
 import fi.javalabra.rendering.PaddleDrawer;
 import fi.javalabra.logic.Field;
 import fi.javalabra.gwindow.Gamewindow;
+import fi.javalabra.input.KeyboardControls;
 
 public class Game {
     
@@ -24,8 +25,12 @@ public class Game {
     private Blocks blocks;
     private Paddle paddle;
     
+    private KeyboardControls keyboardControls;
+    
+    
     public Game(int height, int width, Renderer renderer, Field field,
-            Ball ball, Blocks blocks, Paddle paddle) {
+            Ball ball, Blocks blocks, Paddle paddle,
+            KeyboardControls keyboardControls) {
         
         this.height = height;
         this.width = width;
@@ -36,6 +41,8 @@ public class Game {
         this.field = field;
         this.paddle = paddle;
         
+        this.keyboardControls = keyboardControls;
+        
     }
     
     public Game(int height, int width, Field field,
@@ -43,7 +50,7 @@ public class Game {
         
         this(height, width, new Renderer(new BlockDrawer(blocks),
                 new BallDrawer(ball), new PaddleDrawer(paddle)),
-                field, ball, blocks, paddle);
+                field, ball, blocks, paddle, new KeyboardControls());
     }
     
     public Game(int height, int width) {
@@ -71,6 +78,8 @@ public class Game {
         
         renderer = new Renderer(new BlockDrawer(blocks),
                 new BallDrawer(ball), new PaddleDrawer(paddle));
+        
+        keyboardControls = new KeyboardControls();
     }
     
     public Gamewindow initGame() {
@@ -80,7 +89,10 @@ public class Game {
         
         ball.setVelocityVector(0, -1);
         
-        Gamewindow window = new Gamewindow(height, width, renderer);
+        Gamewindow window = new Gamewindow(height, width, renderer, 
+                keyboardControls);
+        
+        field.setRandomizeVelocity(true);
         
         return window;
            
@@ -96,6 +108,8 @@ public class Game {
     
     private void update() {
         
+        controlPaddle();
+        
         field.moveBall();
         renderer.repaint();
         
@@ -103,6 +117,17 @@ public class Game {
             Thread.sleep(15);
         } catch(InterruptedException e) {
             System.out.println("Window not yet initialised");
+        }
+    }
+    
+    private void controlPaddle() {
+        
+        final int moveConstant = (width / 240) + 1;
+        
+        if(keyboardControls.getMoveLeft()) {
+            field.movePaddle(- moveConstant);
+        } else if(keyboardControls.getMoveRight()) {
+            field.movePaddle(moveConstant);
         }
     }
     

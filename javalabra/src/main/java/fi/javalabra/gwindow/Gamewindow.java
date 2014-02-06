@@ -5,21 +5,26 @@ import java.awt.Dimension;
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import fi.javalabra.rendering.Renderer;
+import fi.javalabra.input.KeyboardControls;
 
 public class Gamewindow implements Runnable {
     
     private JFrame frame;
     private Renderer renderer;
+    private KeyboardControls keyboardControls;
     
     private int height;
     private int width;
     
-    public Gamewindow(int height, int width, Renderer renderer) {
+    public Gamewindow(int height, int width, Renderer renderer,
+            KeyboardControls keyboardControls) {
         
         this.renderer = renderer;
         
         this.height = height;
         this.width = width;
+        
+        this.keyboardControls = keyboardControls;
     }
     
     @Override
@@ -38,6 +43,8 @@ public class Gamewindow implements Runnable {
     private void createComponents(Container container) {
         
         container.add(renderer);
+        
+        frame.addKeyListener(keyboardControls);
         
     }
 }
