@@ -127,55 +127,18 @@ public class Field {
         
         while(current != null) {
             
-            if(current.collidesWithLowEdge(ball.getHighEdgeY(),
-                    ball.getHighEdgeY() + verticalMomentum,
-                    ball.getLeftEdgeX() + horizontalMomentum,
-                    ball.getRightEdgeX() + horizontalMomentum)) {
+            if(handleBlockLowCollision(ball, current,
+                    verticalMomentum, horizontalMomentum) ||
+                handleBlockHighCollision(ball, current,
+                    verticalMomentum, horizontalMomentum) ||
+                handleBlockLeftCollision(ball, current,
+                    verticalMomentum, horizontalMomentum) ||
+                handleBlockRightCollision(ball, current,
+                    verticalMomentum, horizontalMomentum)) {
                 
-                blocks.deleteCurrent();
-                
-                handleVerticalCollision(ball, current.getLowEdgeY(),
-                        verticalMomentum, horizontalMomentum);
-                
-                blocks.rewind();
-                return true;
-                
-            } else if(current.collidesWithHighEdge(ball.getLowEdgeY(),
-                    ball.getLowEdgeY() + verticalMomentum,
-                    ball.getLeftEdgeX() + horizontalMomentum,
-                    ball.getRightEdgeX() + horizontalMomentum)) {
-                
-                blocks.deleteCurrent();
-                handleVerticalCollision(ball, current.getHighEdgeY(), 
-                        verticalMomentum, horizontalMomentum);
-                
-                blocks.rewind();
-                return true;
-                
-            } else if(current.collidesWithLeftEdge(ball.getRightEdgeX(),
-                    ball.getRightEdgeX() + horizontalMomentum,
-                    ball.getLowEdgeY() + verticalMomentum,
-                    ball.getHighEdgeY() + verticalMomentum)) {
-                
-                blocks.deleteCurrent();
-                handleHorizontalCollision(ball, current.getLeftEdgeX(), 
-                        verticalMomentum, horizontalMomentum);
-                
-                blocks.rewind();
-                return true;
-            } else if(current.collidesWithRightEdge(ball.getLeftEdgeX(),
-                    ball.getLeftEdgeX() + horizontalMomentum,
-                    ball.getLowEdgeY() + verticalMomentum,
-                    ball.getHighEdgeY() + verticalMomentum)) {
-                
-                blocks.deleteCurrent();
-                handleHorizontalCollision(ball, current.getRightEdgeX(), 
-                        verticalMomentum, horizontalMomentum);
-                
-                blocks.rewind();
                 return true;
             }
-                
+            
             current = blocks.getNext();
         }
         
@@ -183,6 +146,84 @@ public class Field {
         
         return false;
         
+    }
+    
+    private boolean handleBlockLowCollision(Ball ball, Block current,
+            int verticalMomentum, int horizontalMomentum) {
+        
+        if(current.collidesWithLowEdge(ball.getHighEdgeY(),
+                ball.getHighEdgeY() + verticalMomentum,
+                ball.getLeftEdgeX() + horizontalMomentum,
+                ball.getRightEdgeX() + horizontalMomentum)) {
+
+            blocks.deleteCurrent();
+
+            handleVerticalCollision(ball, current.getLowEdgeY(),
+                    verticalMomentum, horizontalMomentum);
+
+            blocks.rewind();
+            return true;
+        }
+        
+        return false;
+    }
+    
+    private boolean handleBlockHighCollision(Ball ball, Block current,
+            int verticalMomentum, int horizontalMomentum) {
+        
+        if(current.collidesWithHighEdge(ball.getLowEdgeY(),
+                ball.getLowEdgeY() + verticalMomentum,
+                ball.getLeftEdgeX() + horizontalMomentum,
+                ball.getRightEdgeX() + horizontalMomentum)) {
+
+            blocks.deleteCurrent();
+            handleVerticalCollision(ball, current.getHighEdgeY(),
+                    verticalMomentum, horizontalMomentum);
+
+            blocks.rewind();
+            return true;
+
+        }
+        
+        return false;
+    }
+    
+    private boolean handleBlockLeftCollision(Ball ball, Block current,
+            int verticalMomentum, int horizontalMomentum) {
+        
+        if(current.collidesWithLeftEdge(ball.getRightEdgeX(),
+                ball.getRightEdgeX() + horizontalMomentum,
+                ball.getLowEdgeY() + verticalMomentum,
+                ball.getHighEdgeY() + verticalMomentum)) {
+
+            blocks.deleteCurrent();
+            handleHorizontalCollision(ball, current.getLeftEdgeX(),
+                    verticalMomentum, horizontalMomentum);
+
+            blocks.rewind();
+            return true;
+        }
+
+        return false;
+    }
+    
+    private boolean handleBlockRightCollision(Ball ball, Block current,
+            int verticalMomentum, int horizontalMomentum) {
+        
+        if(current.collidesWithRightEdge(ball.getLeftEdgeX(),
+                ball.getLeftEdgeX() + horizontalMomentum,
+                ball.getLowEdgeY() + verticalMomentum,
+                ball.getHighEdgeY() + verticalMomentum)) {
+
+            blocks.deleteCurrent();
+            handleHorizontalCollision(ball, current.getRightEdgeX(),
+                    verticalMomentum, horizontalMomentum);
+
+            blocks.rewind();
+            return true;
+        }
+        
+        return false;
     }
     
     //lineY, Y coordinate of the line to collide with
