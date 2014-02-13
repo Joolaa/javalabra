@@ -13,6 +13,8 @@ public class Blocks {
     
     private int size;
     
+    private boolean locked;
+    
     private class BlockNode {
         
         private BlockNode next;
@@ -37,6 +39,7 @@ public class Blocks {
         
         this.current = null;
         
+        this.locked = false;
         
         this.size = 0;
     }
@@ -205,6 +208,21 @@ public class Blocks {
         */
         
         return size;
+    }
+    
+    public boolean getLocked() {
+        
+        return locked;
+    }
+    
+    public void lock() {
+        
+        locked = true;
+    }
+    
+    public void unlock() {
+        
+        locked = false;
     }
     
 }

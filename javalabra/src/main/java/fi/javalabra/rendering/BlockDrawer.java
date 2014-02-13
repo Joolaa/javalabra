@@ -24,6 +24,9 @@ public class BlockDrawer {
      */
     public void drawBlocks(Graphics graphics) {
         
+        if(blocks.getLocked())
+            return;
+        
         if(blocks.size() < 1)
             return;
         

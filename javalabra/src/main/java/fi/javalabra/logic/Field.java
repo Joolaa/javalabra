@@ -78,7 +78,7 @@ public class Field {
         
         if(blocks != null && blocks.getFirst() != null) {
             boolean hitBlock = handleBlockCollisions(ball, dy, dx);
-            
+            blocks.unlock();
             if(hitBlock) {
                 velocityRandomizer(ball);
                 return;
@@ -134,6 +134,8 @@ public class Field {
     private boolean handleBlockCollisions(Ball ball, int verticalMomentum,
             int horizontalMomentum) {
         
+        blocks.lock();
+        
         
         blocks.rewind();
         
@@ -150,6 +152,7 @@ public class Field {
                 handleBlockRightCollision(ball, current,
                     verticalMomentum, horizontalMomentum)) {
                 
+                blocks.unlock();
                 return true;
             }
             
@@ -158,6 +161,7 @@ public class Field {
         
         blocks.rewind();
         
+        blocks.unlock();
         return false;
         
     }
