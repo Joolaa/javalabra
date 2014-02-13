@@ -62,11 +62,11 @@ public class FieldTest {
     
     @Test
     public void ballCollidesWithWallFromAngle() {
-        b.setVelocityVector(- 3, 0);
+        b.setVelocityVector(3, 0);
         
         f.moveBall();
         
-        b.setVelocityVector(6, 6);
+        b.setVelocityVector(- 6, 6);
         
         f.moveBall();
         
