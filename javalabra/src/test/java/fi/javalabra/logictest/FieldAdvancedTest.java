@@ -82,4 +82,15 @@ public class FieldAdvancedTest {
         assertEquals(p.getX(), f.getWidth()- p.getWidth());
     }
     
+    @Test
+    public void gameEnds() {
+        
+        assertTrue(!f.getGameOver());
+        
+        b.setVelocityVector(0, 6);
+        f.moveBall();
+        
+        assertTrue(f.getGameOver());
+    }
+    
 }

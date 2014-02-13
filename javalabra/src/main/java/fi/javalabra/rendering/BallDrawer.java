@@ -17,6 +17,10 @@ public class BallDrawer {
         this.ball = ball;
     }
     
+    /**
+     * Draw the ball as a rectangle
+     * @param graphics the object which is used for drawing
+     */
     public void drawBall(Graphics graphics) {
         
         graphics.setColor(Color.getHSBColor(0.5f, 0.1f, 1.f));

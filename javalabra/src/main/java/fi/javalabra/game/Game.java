@@ -32,6 +32,7 @@ public class Game {
     
     private KeyboardControls keyboardControls;
     
+    private long timeOfLastPause;
     
     
     public Game(int height, int width, Renderer renderer, Field field,
@@ -46,6 +47,8 @@ public class Game {
         
         this.field = field;
         this.paddle = paddle;
+        
+        this.timeOfLastPause = -1;
         
         this.keyboardControls = keyboardControls;
         
@@ -89,6 +92,11 @@ public class Game {
         
         keyboardControls = new KeyboardControls();
     }
+    
+    /**
+     * Initialize the game properly.
+     * @return the game window
+     */
     
     public Gamewindow initGame() {
         
@@ -137,6 +145,22 @@ public class Game {
         renderer.setScreenPaused(false);
     }
     
+    private void pauseGame() {
+        
+        if(timeOfLastPause != -1 &&
+                System.nanoTime() - timeOfLastPause < 500000000)
+            return;
+        
+        displayPausedMessage("Paused. \nPress <esc> or p to continue.");
+        
+        while(!keyboardControls.getPauseButton()) {
+            
+            delay(30);
+        }
+        
+        timeOfLastPause = System.nanoTime();
+    }
+    
     private void displayStartMessage() {
         displayPausedMessage("Press any key to start game");
     }
@@ -162,6 +186,11 @@ public class Game {
         }
     }
     
+    /**
+     * Starts the game. Display start message and then start the main loop.
+     * @param window the game window to draw to
+     */
+    
     public void startGame(Gamewindow window) {
         
         displayStartMessage();
@@ -176,7 +205,10 @@ public class Game {
             } else if(field.getBlocks().size() == 0) {
                 displayVictoryMessage();
                 resetGame();
+            } else if(keyboardControls.getPauseButton()) {
+                pauseGame();
             }
+            
         }
     }
     
@@ -188,6 +220,10 @@ public class Game {
         
         field.moveBall();
         renderer.repaint();
+        
+        if(timeOfLastPause != -1 &&
+                System.nanoTime() - timeOfLastPause > 500000000)
+            timeOfLastPause = -1;
         
         frameTime = System.nanoTime() - frameTime;
         

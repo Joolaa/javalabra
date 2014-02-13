@@ -18,15 +18,14 @@ public class BlockDrawer {
         this.blocks = blocks;
     }
     
+    /**
+     * Draw all the blocks as rectangles
+     * @param graphics the object which is used for drawing
+     */
     public void drawBlocks(Graphics graphics) {
         
         if(blocks.size() < 1)
             return;
-        
-        if(blocks.getLocked())
-            return;
-        
-        blocks.lock();
         
         blocks.rewind();
         
@@ -43,7 +42,6 @@ public class BlockDrawer {
         }
         
         blocks.rewind();
-        blocks.unlock();
     }
     
     private void drawBlock(Graphics graphics, Block block) {

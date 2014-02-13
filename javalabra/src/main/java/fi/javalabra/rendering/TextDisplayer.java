@@ -22,6 +22,12 @@ public class TextDisplayer extends JPanel {
         this.string = string;
     }
     
+    /**
+     * Draw the text represented by the string-field.
+     * @param graphics the object which is used for drawing
+     * @param x the X-coordinate of the first character
+     * @param y the Y-coordinate of the first character
+     */
     public void drawText(Graphics graphics, int x, int y) {
         
         Graphics2D graphics2D = (Graphics2D) graphics;

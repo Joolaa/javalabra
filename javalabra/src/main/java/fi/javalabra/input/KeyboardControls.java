@@ -11,7 +11,9 @@ public class KeyboardControls implements KeyListener {
     
     private boolean paddleMovesLeft;
     private boolean paddleMovesRight;
+    private boolean pIsPressed;
     private boolean anyKeyIsPressed;
+    private boolean escIsPressed;
     
     public KeyboardControls() {
         
@@ -34,6 +36,14 @@ public class KeyboardControls implements KeyListener {
             case(KeyEvent.VK_RIGHT):
                 paddleMovesRight = true;
                 break;
+            
+            case(KeyEvent.VK_P):
+                pIsPressed = true;
+                break;
+             
+            case(KeyEvent.VK_ESCAPE):
+                escIsPressed = true;
+                break;
         }
     }
     
@@ -51,6 +61,14 @@ public class KeyboardControls implements KeyListener {
             case(KeyEvent.VK_RIGHT):
                 paddleMovesRight = false;
                 break;
+                
+            case(KeyEvent.VK_P):
+                pIsPressed = false;
+                break;
+                
+            case(KeyEvent.VK_ESCAPE):
+                escIsPressed = false;
+                break;
         }
     }
     
@@ -63,6 +81,11 @@ public class KeyboardControls implements KeyListener {
     
     public boolean getMoveRight() {
         return paddleMovesRight;
+    }
+    
+    public boolean getPauseButton() {
+        
+        return escIsPressed || pIsPressed;
     }
     
     public boolean getAnyKeyIsPressed() {

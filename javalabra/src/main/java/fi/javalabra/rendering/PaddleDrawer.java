@@ -17,6 +17,10 @@ public class PaddleDrawer {
         this.paddle = paddle;
     }
     
+    /**
+     * Draw the paddle as a rectangle
+     * @param graphics the object which is used for drawing
+     */
     public void drawPaddle(Graphics graphics) {
         
         graphics.setColor(Color.getHSBColor(0.66f, 0.15f, 1.f));

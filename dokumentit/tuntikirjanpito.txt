@@ -51,3 +51,11 @@ noin 3 tuntia
 
 6.2
 noin 5 tuntia
+
+12.2
+noin 1.5 tuntia, saatoin tehndä myös jotain aiempina päivinä mutta
+en muista tarkasti
+
+13.2
+noin 6 tuntia, ohjelma on jo jotakuinkin demokelpoisessa tilassa,
+aion vielä tehdä vähän testejä muihinkin paketteihin

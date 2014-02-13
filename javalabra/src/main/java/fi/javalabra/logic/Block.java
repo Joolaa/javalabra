@@ -28,6 +28,14 @@ public class Block {
         this.hueCode = random.nextFloat();
     }
     
+    /**
+     * Check for collision with the low edge of the block
+     * @param prevBallHigh previous high edge Y-coordinate of the ball
+     * @param ballHigh high edge Y-coordinate of the ball in the next frame
+     * @param ballLeft left edge X-coordinate of the ball in the next frame
+     * @param ballRight right edge X-coordinate of the ball in the next frame
+     * @return true if collision happened, false otherwise
+     */
     public boolean collidesWithLowEdge(int prevBallHigh, int ballHigh,
             int ballLeft, int ballRight) {
         
@@ -44,6 +52,14 @@ public class Block {
         return false;
     }
     
+    /**
+     * Check for collision with the high edge of the block
+     * @param prevBallLow previous low edge Y-coordinate of the ball
+     * @param ballLow low edge Y-coordinate of the ball in the next frame
+     * @param ballLeft left edge X-coordinate of the ball in the next frame
+     * @param ballRight right edge X-coordinate of the ball in the next frame
+     * @return true if collision happened, false otherwise
+     */
     public boolean collidesWithHighEdge(int prevBallLow, int ballLow, 
             int ballLeft, int ballRight) {
         
@@ -60,6 +76,14 @@ public class Block {
         return false;
     }
     
+    /**
+     * Check for collision with the left edge of the block
+     * @param prevBallRight previous right edge X-coordinate of the ball
+     * @param ballRight right edge X-coordinate of the ball in the next frame
+     * @param ballLow low edge Y-coordinate of the ball in the next frame
+     * @param ballHigh hight edge Y-coordinate of the ball in the next frame
+     * @return true if collision happened, false otherwise
+     */
     public boolean collidesWithLeftEdge(int prevBallRight, int ballRight,
             int ballLow, int ballHigh) {
         
@@ -76,6 +100,14 @@ public class Block {
         return false;
     }
     
+    /**
+     * Check for collision with the right edge of the block
+     * @param prevBallLeft previous left edge X-coordinate of the ball
+     * @param ballLeft left edge X-coordinate of the ball in the next frame
+     * @param ballLow low edge Y-coordinate of the ball in the next frame
+     * @param ballHigh hight edge Y-coordinate of the ball in the next frame
+     * @return true if collision happened, false otherwise
+     */
     public boolean collidesWithRightEdge(int prevBallLeft, int ballLeft, 
             int ballLow, int ballHigh) {
         

@@ -51,10 +51,20 @@ public class Field {
         this(height, width, ball, null, null);
     }
     
+    /**
+     * Get the velocity of the ball and advance the ball to the position
+     * it is supposed to be in the next frame
+     */
     public void moveBall() {
         moveBall(ball.getDX(), ball.getDY());
     }
     
+    /**
+     * Move the ball to a new position, also check for collisions and
+     * check if the game is over.
+     * @param dx amount to move the ball along the X-axis
+     * @param dy amount to move the ball along the Y-axis
+     */
     public void moveBall(int dx, int dy) {
         
         int futureLeft = ball.getLeftEdgeX() + dx;
@@ -329,6 +339,10 @@ public class Field {
         this.randomizeVelocity = randomizeVelocity;
     }
     
+    /**
+     * Method to randomize the velocity of the ball
+     * @param ball ball for which to set the randomized velocity
+     */
     public void velocityRandomizer(Ball ball) {
         
         Random rng = new Random();

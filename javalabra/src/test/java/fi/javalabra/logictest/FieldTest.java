@@ -90,7 +90,6 @@ public class FieldTest {
     
     @Test
     public void ballCollidesSteepAngle() {
-        System.out.println("------");
         b.setLocation(1, 1);
         
         b.setVelocityVector(-2, 4);
