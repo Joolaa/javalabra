@@ -6,6 +6,7 @@ import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import fi.javalabra.rendering.Renderer;
 import fi.javalabra.input.KeyboardControls;
+import fi.javalabra.rendering.TextDisplayer;
 
 /**
  * Visual display window of the game

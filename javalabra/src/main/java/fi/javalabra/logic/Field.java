@@ -18,6 +18,8 @@ public class Field {
     
     private Blocks blocks;
     
+    private boolean gameOver;
+    
     private boolean randomizeVelocity;
     
     /**
@@ -38,6 +40,8 @@ public class Field {
         this.blocks = blocks;
         
         this.randomizeVelocity = false;
+        
+        this.gameOver = false;
         
     }
     
@@ -93,7 +97,7 @@ public class Field {
             
         } else if(futureLow >= height) {
             
-            handleVerticalCollision(ball, height - 1, dy, dx);
+            gameOver = true;
             
         } else if(futureRight >= width) {
                      
@@ -344,4 +348,13 @@ public class Field {
         }
     }
     
+    public void setGameOver(boolean gameOver) {
+        
+        this.gameOver = gameOver;
+    }
+    
+    public boolean getGameOver() {
+        
+        return gameOver;
+    }
 }

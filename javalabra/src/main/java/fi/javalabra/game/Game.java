@@ -12,6 +12,7 @@ import fi.javalabra.rendering.PaddleDrawer;
 import fi.javalabra.logic.Field;
 import fi.javalabra.gwindow.Gamewindow;
 import fi.javalabra.input.KeyboardControls;
+import fi.javalabra.rendering.TextDisplayer;
 
 /**
  * Class which wraps up different components of the system
@@ -30,6 +31,7 @@ public class Game {
     private Paddle paddle;
     
     private KeyboardControls keyboardControls;
+    
     
     
     public Game(int height, int width, Renderer renderer, Field field,
@@ -53,7 +55,8 @@ public class Game {
             Ball ball, Blocks blocks, Paddle paddle) {
         
         this(height, width, new Renderer(new BlockDrawer(blocks),
-                new BallDrawer(ball), new PaddleDrawer(paddle)),
+                new BallDrawer(ball), new PaddleDrawer(paddle), 
+                new TextDisplayer(null)),
                 field, ball, blocks, paddle, new KeyboardControls());
     }
     
@@ -81,7 +84,8 @@ public class Game {
         blocks = field.getBlocks();
         
         renderer = new Renderer(new BlockDrawer(blocks),
-                new BallDrawer(ball), new PaddleDrawer(paddle));
+                new BallDrawer(ball), new PaddleDrawer(paddle),
+                new TextDisplayer(null));
         
         keyboardControls = new KeyboardControls();
     }
@@ -89,9 +93,7 @@ public class Game {
     public Gamewindow initGame() {
         
         
-        initBlocks(blocks);
-        
-        ball.setVelocityVector(0, -1);
+        resetGame();
         
         Gamewindow window = new Gamewindow(height, width, renderer, 
                 keyboardControls);
@@ -102,25 +104,97 @@ public class Game {
            
     }
     
+    private void resetGame() {
+        
+        initBlocks(blocks);
+        
+        ball.setVelocityVector(0, -1);
+        ball.setLocation((width / 2) - (height / 48), (height / 24) * 15);
+        
+        paddle.setX((width / 2) - (width / 16));
+        paddle.setY((height / 24) * 20);
+        
+        field.setGameOver(false);
+    }
+    
+    private void displayPausedMessage(String message) {
+        
+        renderer.setScreenPaused(true);
+        
+        renderer.getTextDisplayer().setString(message);
+        
+        renderer.repaint();
+        
+        delay(1000);
+        
+        while(!keyboardControls.getAnyKeyIsPressed()) {
+            
+            delay(30);
+        }
+        
+        renderer.getTextDisplayer().nullifyString();
+        
+        renderer.setScreenPaused(false);
+    }
+    
+    private void displayStartMessage() {
+        displayPausedMessage("Press any key to start game");
+    }
+    
+    private void displayDefeatMessage() {
+        
+        displayPausedMessage("You have been defeated! \n" + 
+                "(Press any key to start a new game)");
+    }
+    
+    private void displayVictoryMessage() {
+        
+        displayPausedMessage("You are victorious! \n" +
+                "(Press any key to start a new game)");
+    }
+    
+    private void delay(long time) {
+        
+        try {
+            Thread.sleep(time);
+        } catch(InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+    
     public void startGame(Gamewindow window) {
+        
+        displayStartMessage();
         
         while(true) {
             
             update();
+            
+            if(field.getGameOver()) {
+                displayDefeatMessage();
+                resetGame();
+            } else if(field.getBlocks().size() == 0) {
+                displayVictoryMessage();
+                resetGame();
+            }
         }
     }
     
     private void update() {
+        
+        long frameTime = System.nanoTime();
         
         controlPaddle();
         
         field.moveBall();
         renderer.repaint();
         
-        try {
-            Thread.sleep(15);
-        } catch(InterruptedException e) {
-            System.out.println("Window not yet initialised");
+        frameTime = System.nanoTime() - frameTime;
+        
+        int frameMs = (int) frameTime / 1000000;
+        
+        if(frameMs < 15) {
+            delay(15 - frameMs);
         }
     }
     

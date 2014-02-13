@@ -11,15 +11,19 @@ public class KeyboardControls implements KeyListener {
     
     private boolean paddleMovesLeft;
     private boolean paddleMovesRight;
+    private boolean anyKeyIsPressed;
     
     public KeyboardControls() {
         
         this.paddleMovesLeft = false;
         this.paddleMovesRight = false;
+        this.anyKeyIsPressed = false;
     }
     
     @Override
     public void keyPressed(KeyEvent e) {
+        
+        anyKeyIsPressed = true;
         
         switch(e.getKeyCode()) {
             
@@ -35,6 +39,8 @@ public class KeyboardControls implements KeyListener {
     
     @Override
     public void keyReleased(KeyEvent e) {
+        
+        anyKeyIsPressed = false;
         
         switch(e.getKeyCode()) {
             
@@ -57,5 +63,10 @@ public class KeyboardControls implements KeyListener {
     
     public boolean getMoveRight() {
         return paddleMovesRight;
+    }
+    
+    public boolean getAnyKeyIsPressed() {
+        
+        return anyKeyIsPressed;
     }
 }
