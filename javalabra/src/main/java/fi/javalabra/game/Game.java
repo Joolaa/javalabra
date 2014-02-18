@@ -162,7 +162,8 @@ public class Game {
     }
     
     private void displayStartMessage() {
-        displayPausedMessage("Press any key to start game");
+        displayPausedMessage("Press any key to start game. \n" + 
+                "Press p or <esc> during the game to pause.");
     }
     
     private void displayDefeatMessage() {
@@ -237,11 +238,12 @@ public class Game {
     private void controlPaddle() {
         
         final int moveConstant = (width / 240) + 1;
+        final int boostConstant = keyboardControls.getSpaceIsPressed() ? 4 : 1;
         
         if(keyboardControls.getMoveLeft()) {
-            field.movePaddle(- moveConstant);
+            field.movePaddle((- moveConstant) * boostConstant);
         } else if(keyboardControls.getMoveRight()) {
-            field.movePaddle(moveConstant);
+            field.movePaddle(moveConstant * boostConstant);
         }
     }
     

@@ -99,6 +99,7 @@ public class Field {
             //ball.setLocation(ball.getX() + (dx - curdx), 0);
             
             handleVerticalCollision(ball, 0, dy, dx);
+            velocityRandomizer(ball);
             
         } else if(futureLeft < 0) {
             
@@ -350,20 +351,19 @@ public class Field {
     public void velocityRandomizer(Ball ball) {
         
         Random rng = new Random();
-        int rand = rng.nextInt(5);
+        int randY = rng.nextInt(5);
+        int randX = rng.nextInt(3);
         
-        if(rand == 0) {
-            
-            if(ball.getDX() < 0)
-                ball.setVelocityVector(ball.getDX() - 1, ball.getDY());
-            else
-                ball.setVelocityVector(ball.getDX() + 1, ball.getDY());
-        } else if(rand == 1){
+        if(randY == 0){
             if (ball.getDY() < 0)
                  ball.setVelocityVector(ball.getDX(), ball.getDY() - 1);
             else 
                  ball.setVelocityVector(ball.getDX(), ball.getDY() + 1);
         }
+        if(randX == 0)
+            ball.setVelocityVector(ball.getDX() - 1, ball.getDY());
+        else if(randX == 2)
+            ball.setVelocityVector(ball.getDX() + 1, ball.getDY());
     }
     
     public void setGameOver(boolean gameOver) {

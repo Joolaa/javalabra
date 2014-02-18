@@ -11,6 +11,7 @@ public class KeyboardControls implements KeyListener {
     
     private boolean paddleMovesLeft;
     private boolean paddleMovesRight;
+    private boolean spaceIsPressed;
     private boolean pIsPressed;
     private boolean anyKeyIsPressed;
     private boolean escIsPressed;
@@ -20,6 +21,9 @@ public class KeyboardControls implements KeyListener {
         this.paddleMovesLeft = false;
         this.paddleMovesRight = false;
         this.anyKeyIsPressed = false;
+        this.pIsPressed = false;
+        this.escIsPressed = false;
+        this.spaceIsPressed = false;
     }
     
     @Override
@@ -43,6 +47,9 @@ public class KeyboardControls implements KeyListener {
              
             case(KeyEvent.VK_ESCAPE):
                 escIsPressed = true;
+                break;
+            case(KeyEvent.VK_SPACE):
+                spaceIsPressed = true;
                 break;
         }
     }
@@ -69,6 +76,9 @@ public class KeyboardControls implements KeyListener {
             case(KeyEvent.VK_ESCAPE):
                 escIsPressed = false;
                 break;
+            case(KeyEvent.VK_SPACE):
+                spaceIsPressed = false;
+                break;
         }
     }
     
@@ -91,5 +101,10 @@ public class KeyboardControls implements KeyListener {
     public boolean getAnyKeyIsPressed() {
         
         return anyKeyIsPressed;
+    }
+    
+    public boolean getSpaceIsPressed() {
+        
+        return spaceIsPressed;
     }
 }
