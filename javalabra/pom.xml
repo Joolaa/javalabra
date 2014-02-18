@@ -48,6 +48,20 @@
               <artifactId>pitest-maven</artifactId>
               <version>0.30</version>
           </plugin>
+          <plugin>
+              <!-- Build an executable JAR -->
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+              <configuration>
+                  <archive>
+                      <manifest>
+                          <addClasspath>true</addClasspath>
+                          <classpathPrefix>lib/</classpathPrefix>
+                          <mainClass>fi.javalabra.javalabra.App</mainClass>
+                      </manifest>
+                  </archive>
+              </configuration>
+          </plugin>
       </plugins>
   </build>
 </project>

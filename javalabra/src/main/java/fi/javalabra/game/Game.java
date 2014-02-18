@@ -163,7 +163,9 @@ public class Game {
     
     private void displayStartMessage() {
         displayPausedMessage("Press any key to start game. \n" + 
-                "Press p or <esc> during the game to pause.");
+                "Press p or <esc> during the game to pause. \n" +
+                "Press <left> or <right> to move. \n" + 
+                "Hold <space> to move faster.");
     }
     
     private void displayDefeatMessage() {
