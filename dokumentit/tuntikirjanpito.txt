@@ -59,3 +59,11 @@ en muista tarkasti
 13.2
 noin 6 tuntia, ohjelma on jo jotakuinkin demokelpoisessa tilassa,
 aion vielä tehdä vähän testejä muihinkin paketteihin
+
+14.2
+noin 1 tunti buginkorjaus joka löytyi demossa
+
+28.2
+viimeistelyt, varmaan 6 tuntia tai jotain sinne päin. Ohjelma ei edennyt
+kovin paljoa viimeisellä viikolla, mutta minun mielestä se on nyt hyvällä
+mallilla.
