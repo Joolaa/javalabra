@@ -1,0 +1,12 @@
+Breakout-käyttöohjeet
+
+Peli alkaessa kuuluisi näkyä aloitusruutu jossa annetaan tiedot
+näppäinkomennoista englannin kielellä. Pelin voi aloittaa painamalla mitä
+tahansa näppäintä aloitusruudussa. Peliä pelataan ohjaamalla ikkunan 
+alaosassa näkyvää mailaa, jota voi liikuttaa oikealle ja vasemmalle
+painamalla oikeaa nuolinäppäintä ja vasenta nuolinäppäintä tai 'a'- ja
+'d'-näppäimiä. Pitämällä välilyöntiä pohjassa maila liikkuu nopeampaa.
+Painamalla <esc>- tai 'p'-näppäintä pelin voi laittaa tauolle ja tauolta
+voi palata painamalla jompaa kumpaa äsken mainituista näppäimistä.
+Pelin päättyessä häviöön tai voittoon voi uuden pelin aloittaa painamalla
+mitä tahansa näppäintä. Pelin voi lopettaa sulkemalla peli-ikkunan.

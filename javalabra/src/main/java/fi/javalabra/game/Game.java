@@ -65,7 +65,7 @@ public class Game {
     */
     
     /**
-     * Constuct the game. Dimensions are in pixels
+     * Construct the game. Dimensions are in pixels
      * @param height Height of the game field
      * @param width  Width of the game field
      */
@@ -187,9 +187,10 @@ public class Game {
      * Display the game start message
      */
     private void displayStartMessage() {
-        displayPausedMessage("Press any key to start game. \n" + 
-                "Press p or <esc> during the game to pause. \n" +
-                "Press <left> or <right> to move. \n" + 
+        displayPausedMessage("Press any key to start game. \n\n" + 
+                "Press p or <esc> during the game to pause. \n\n" +
+                "Press <left> and <right> or\n" +
+                "a and d to move. \n\n" + 
                 "Hold <space> to move faster.");
     }
     

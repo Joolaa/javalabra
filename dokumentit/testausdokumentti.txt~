@@ -1,0 +1,43 @@
+Testausdokumentti
+
+Testit testaavat ainoastaan logic-pakkausta. Vaikka myös game-pakkaukselle
+voisi tehdä testejä, en koe sitä tarpeelliseksi koska kyseisen pakkauksen
+sisältämän luokan tarkoitus on vain kasata pelin eri osia yhteen ja
+sen toiminta on melko suoraviivaista. Käyttöliittymäluokkia en testannut,
+koska kurssin ohjeissa neuvottiin että niitä ei tarvitse testata.
+
+Testit on jaettu testiluokkiin, joiden tehtävät ovat seuraavat:
+
+BallTest-luokka testaa erilaisia palloon liittyviä asioita, kuten että se
+konstruoituu oikein.
+
+BlocksTest-luokka testaa palikoihin liittyviä asioita, kuten että palikoita
+sisältävään blocks-olioon voi lisätä oikein palikoita ja että niitä voi 
+myös poistaa toimivasti. Luokka testaa myös että yksinkertaiset
+yhteentörmäystapaukset toimivat toivotusti.
+
+FieldTest-luokka testaa pelikenttään liittyviä asioita. FieldTest-luokka 
+testaa että palloa voi liikuttaa oikein ja että pallo käyttäytyy oikein
+erilaisissa yhteentörmäystapauksissa.
+
+FieldAdvancedTest-luokka sisältää myös pelikenttään liittyviä testejä.
+Luokka testaa yhteentörmäyksen toimivuutta, sitä että peli loppuu oikein
+ja sitä että maila liikkuu oikein.
+
+PaddleTest-luokka sisältää mailaa koskevia testejä. Nämä testit testaavat
+yksinkertaisia yhteentörmäyksiä ja että maila konstruoituu oikein.
+
+
+Käyttöliittymäluokille ei ole yksikkötestejä, mutta pelin toimivuutta on
+testattu peliä pelaamalla. Pelin kaikki kontrollit on todettu toimiviksi, 
+samoin grafiikat. Palikoiden tuhoutumisessa saattaa olla ongelmia, aiempi
+bugi, jossa palikat välillä eivät tuhoutuneet, on korjattu, mutta välillä
+pallon liikkuessa nopeasti saattaa jokin sellainen palikka tuhoutua, joka
+oli pallon liikeradalla olevan palikan takia. Tämä oli kyllä ongelma jota
+osasin odottaa johtuen tavasta jolla suunnittelin yhteentörmäysten
+hallinnan, mutta onneksi se ei ole vakava ongelma. Toinen bugi joka
+ohjelmassa on, on se että välillä kun pallo on kurssilla liikkumassa
+pelikentästä alas, jos pelaaja liikuttaa mailan tarpeeksi nopeasti
+pallon kohdalle, pallo ikään kuin pomppaa mailan eteen. Vaikka olen
+tiennyt tästä bugista jo jonkin aikaa, en ole korjannut sitä koska
+se on mielestäni mukava ominaisuus ja lisää vauhdin tunnetta peliin.

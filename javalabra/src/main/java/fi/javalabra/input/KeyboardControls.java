@@ -37,9 +37,11 @@ public class KeyboardControls implements KeyListener {
         switch(e.getKeyCode()) {
             
             case(KeyEvent.VK_LEFT):
+            case(KeyEvent.VK_A):
                 paddleMovesLeft = true;
                 break;
                 
+            case(KeyEvent.VK_D):
             case(KeyEvent.VK_RIGHT):
                 paddleMovesRight = true;
                 break;
@@ -64,10 +66,12 @@ public class KeyboardControls implements KeyListener {
         
         switch(e.getKeyCode()) {
             
+            case(KeyEvent.VK_A):
             case(KeyEvent.VK_LEFT):
                 paddleMovesLeft = false;
                 break;
                 
+            case(KeyEvent.VK_D):
             case(KeyEvent.VK_RIGHT):
                 paddleMovesRight = false;
                 break;

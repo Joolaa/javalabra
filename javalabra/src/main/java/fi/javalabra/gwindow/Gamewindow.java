@@ -42,7 +42,7 @@ public class Gamewindow implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Breakout");
-        frame.setPreferredSize(new Dimension(width, height));
+        frame.setPreferredSize(new Dimension(width + 10, height));
         
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         

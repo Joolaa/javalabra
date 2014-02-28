@@ -1,0 +1,15 @@
+Ohjelman rakennekuvaus
+
+
+
+Ohjelman toiminnan keskiössä on field-luokka joka kokoaa kaikki pelin
+logiikkaoliot yhteen. Ball-luokka sisältää palloon sisältyvää dataa,
+paddle-luokka sisältää mailaan sisältyvää dataa, blocks-luokkan tehtävä
+on pitää tarjota pääsy palikoihin, joista huolehtii block-luokka.
+Field-luokka on myös vastuussa yhteentörmäystilanteiden hoidosta.
+
+Renderer-luokka kasaa yhteen eri piirtäjäluokat, jotka ovat ballDrawer,
+blockDrawer, paddleDrawer, jotka huolehtivat eri osien piirtämisestä, sekä
+textDisplayer-luokan jotka käytetään merkkijonojen näyttämiseen ruudulla.
+Kukin piirtäjäluokka saa tarvittavat tiedot olioiden ulottuvuuksista
+kyseisiltä olioilta.
