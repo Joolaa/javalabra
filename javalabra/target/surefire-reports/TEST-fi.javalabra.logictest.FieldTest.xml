@@ -58,10 +58,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.004" classname="fi.javalabra.logictest.FieldTest" name="constructsProperly"/>
-  <testcase time="0.002" classname="fi.javalabra.logictest.FieldTest" name="ballMoves"/>
-  <testcase time="0.003" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesWithWall"/>
+  <testcase time="0" classname="fi.javalabra.logictest.FieldTest" name="constructsProperly"/>
+  <testcase time="0" classname="fi.javalabra.logictest.FieldTest" name="ballMoves"/>
+  <testcase time="0.004" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesWithWall"/>
   <testcase time="0.001" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesWithWallFromAngle"/>
-  <testcase time="0.01" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesSeveralTimes"/>
-  <testcase time="0" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesSteepAngle"/>
+  <testcase time="0.001" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesSeveralTimes"/>
+  <testcase time="0.004" classname="fi.javalabra.logictest.FieldTest" name="ballCollidesSteepAngle"/>
 </testsuite>

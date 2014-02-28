@@ -1,5 +1,8 @@
 Breakout-käyttöohjeet
 
+Pelin .jar tiedosto löytyy projektin juurikansiosta sekä sijainnista
+javalabra/target.
+
 Peli alkaessa kuuluisi näkyä aloitusruutu jossa annetaan tiedot
 näppäinkomennoista englannin kielellä. Pelin voi aloittaa painamalla mitä
 tahansa näppäintä aloitusruudussa. Peliä pelataan ohjaamalla ikkunan 

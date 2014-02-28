@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.04" errors="0" skipped="0" tests="8" name="fi.javalabra.logictest.BlocksTest">
+<testsuite failures="0" time="0.037" errors="0" skipped="0" tests="8" name="fi.javalabra.logictest.BlocksTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64"/>
@@ -60,10 +60,10 @@
   </properties>
   <testcase time="0.002" classname="fi.javalabra.logictest.BlocksTest" name="length"/>
   <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="constructsProperly"/>
-  <testcase time="0.004" classname="fi.javalabra.logictest.BlocksTest" name="lowCollision"/>
-  <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="insertionWorks"/>
+  <testcase time="0.004" classname="fi.javalabra.logictest.BlocksTest" name="insertionWorks"/>
   <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="deletionWorks"/>
+  <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="lowCollision"/>
   <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="highCollision"/>
   <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="leftCollision"/>
-  <testcase time="0.001" classname="fi.javalabra.logictest.BlocksTest" name="rightCollision"/>
+  <testcase time="0" classname="fi.javalabra.logictest.BlocksTest" name="rightCollision"/>
 </testsuite>
