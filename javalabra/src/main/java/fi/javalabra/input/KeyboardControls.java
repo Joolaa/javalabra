@@ -16,6 +16,9 @@ public class KeyboardControls implements KeyListener {
     private boolean anyKeyIsPressed;
     private boolean escIsPressed;
     
+    /**
+     * The constructor initializes everything to false
+     */
     public KeyboardControls() {
         
         this.paddleMovesLeft = false;
@@ -85,24 +88,44 @@ public class KeyboardControls implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {}
     
+    /**
+     * Check if the paddle should be moved left
+     * @return True if the paddle should be moved left
+     */
     public boolean getMoveLeft() {
         return paddleMovesLeft;
     }
     
+    /**
+     * Check if the paddle should be moved right
+     * @return True if the paddle should be moved right
+     */
     public boolean getMoveRight() {
         return paddleMovesRight;
     }
     
+    /**
+     * Check if p of esc was pressed
+     * @return True if p or esc was pressed
+     */
     public boolean getPauseButton() {
         
         return escIsPressed || pIsPressed;
     }
     
+    /**
+     * Check if any key was pressed
+     * @return True if some key was pressed
+     */
     public boolean getAnyKeyIsPressed() {
         
         return anyKeyIsPressed;
     }
     
+    /**
+     * Check if space was pressed
+     * @return True if space was pressed
+     */
     public boolean getSpaceIsPressed() {
         
         return spaceIsPressed;

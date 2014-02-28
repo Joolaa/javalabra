@@ -15,6 +15,10 @@ public class TextDisplayer extends JPanel {
     private static Font FONT;
     private String string;
     
+    /**
+     * Construct an instance of the text displayer
+     * @param string the text to display
+     */
     public TextDisplayer(String string) {
         
         super.setBackground(Color.BLACK);
@@ -42,6 +46,10 @@ public class TextDisplayer extends JPanel {
         }
     }
     
+    /**
+     * Check whether the text displayer has a string to display
+     * @return true if there is a string to display
+     */
     public boolean hasString() {
         
         if(string == null || string.isEmpty())
@@ -49,11 +57,18 @@ public class TextDisplayer extends JPanel {
         return true;
     }
     
+    /**
+     * Set the message to display
+     * @param string the string to be displayed
+     */
     public void setString(String string) {
         
         this.string = string;
     }
     
+    /**
+     * Nullify the string, hasString() will return false after calling this
+     */
     public void nullifyString() {
         
         this.string = null;

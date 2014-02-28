@@ -34,7 +34,7 @@ public class Game {
     
     private long timeOfLastPause;
     
-    
+    /*
     public Game(int height, int width, Renderer renderer, Field field,
             Ball ball, Blocks blocks, Paddle paddle,
             KeyboardControls keyboardControls) {
@@ -62,7 +62,13 @@ public class Game {
                 new TextDisplayer(null)),
                 field, ball, blocks, paddle, new KeyboardControls());
     }
+    */
     
+    /**
+     * Constuct the game. Dimensions are in pixels
+     * @param height Height of the game field
+     * @param width  Width of the game field
+     */
     public Game(int height, int width) {
         
         this.height = height;
@@ -71,6 +77,11 @@ public class Game {
         initializeDefault(height, width);
     }
     
+    /**
+     * Default initialization routine for the game
+     * @param height height of the field
+     * @param width width of the field
+     */
     private void initializeDefault(int height, int width) {
         
         field = new Field(height, width,
@@ -112,6 +123,9 @@ public class Game {
            
     }
     
+    /**
+     * Cleanup and initialization of new blocks
+     */
     private void resetGame() {
         
         initBlocks(blocks);
@@ -125,6 +139,10 @@ public class Game {
         field.setGameOver(false);
     }
     
+    /**
+     * Display a message and pause the game
+     * @param message Message to display
+     */
     private void displayPausedMessage(String message) {
         
         renderer.setScreenPaused(true);
@@ -145,6 +163,9 @@ public class Game {
         renderer.setScreenPaused(false);
     }
     
+    /**
+     * Pause the game and display the pause message
+     */
     private void pauseGame() {
         
         if(timeOfLastPause != -1 &&
@@ -152,6 +173,7 @@ public class Game {
             return;
         
         displayPausedMessage("Paused. \nPress <esc> or p to continue.");
+        System.gc();
         
         while(!keyboardControls.getPauseButton()) {
             
@@ -161,6 +183,9 @@ public class Game {
         timeOfLastPause = System.nanoTime();
     }
     
+    /**
+     * Display the game start message
+     */
     private void displayStartMessage() {
         displayPausedMessage("Press any key to start game. \n" + 
                 "Press p or <esc> during the game to pause. \n" +
@@ -168,18 +193,28 @@ public class Game {
                 "Hold <space> to move faster.");
     }
     
+    /**
+     * Display a message when the player is defeated
+     */
     private void displayDefeatMessage() {
         
         displayPausedMessage("You have been defeated! \n" + 
                 "(Press any key to start a new game)");
     }
     
+    /**
+     * Display a message when the player wins the game
+     */
     private void displayVictoryMessage() {
         
         displayPausedMessage("You are victorious! \n" +
                 "(Press any key to start a new game)");
     }
     
+    /**
+     * Put the game to sleep
+     * @param time time to sleep in milliseconds
+     */
     private void delay(long time) {
         
         try {
@@ -205,9 +240,11 @@ public class Game {
             if(field.getGameOver()) {
                 displayDefeatMessage();
                 resetGame();
+                System.gc();
             } else if(field.getBlocks().size() == 0) {
                 displayVictoryMessage();
                 resetGame();
+                System.gc();
             } else if(keyboardControls.getPauseButton()) {
                 pauseGame();
             }
@@ -215,6 +252,9 @@ public class Game {
         }
     }
     
+    /**
+     * Update the game state and draw the next frame
+     */
     private void update() {
         
         long frameTime = System.nanoTime();
@@ -237,6 +277,9 @@ public class Game {
         }
     }
     
+    /**
+     * Receive input and move the paddle on the field
+     */
     private void controlPaddle() {
         
         final int moveConstant = (width / 240) + 1;
@@ -249,7 +292,14 @@ public class Game {
         }
     }
     
+    /**
+     * Default initialization routine for the blocks
+     * @param blocks the container for the blocks
+     */
     private void initBlocks(Blocks blocks) {
+        
+        blocks.nullifyBlockList();
+        System.gc();
         
         final int blockheight = height / 24;
         final int blockwidth = width / 8;

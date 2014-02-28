@@ -12,6 +12,10 @@ public class BallDrawer {
     
     private Ball ball;
     
+    /**
+     * Constructs an instance of this drawer
+     * @param ball the ball to draw
+     */
     public BallDrawer(Ball ball) {
         
         this.ball = ball;

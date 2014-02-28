@@ -20,6 +20,13 @@ public class Renderer extends JPanel{
     private boolean screenPaused;
     
 
+    /**
+     * Construct an instance of the renderer
+     * @param blockDrawer drawer to handle drawing of the blocks
+     * @param ballDrawer drawer to handle the drawing of the ball
+     * @param paddleDrawer drawer to handle the drawing of the paddle
+     * @param textDisplayer text displayer for pause messages
+     */
     public Renderer(BlockDrawer blockDrawer, BallDrawer ballDrawer,
             PaddleDrawer paddleDrawer, TextDisplayer textDisplayer) {
         
@@ -49,16 +56,28 @@ public class Renderer extends JPanel{
         }
     }
     
+    /**
+     * Set the flag for pausing the screen
+     * @param b true to pause the screen
+     */
     public void setScreenPaused(boolean b) {
         
         screenPaused = b;
     }
     
+    /**
+     * Get whether the screen is currently paused
+     * @return true if the screen is paused
+     */
     public boolean getScreenPaused() {
         
         return screenPaused;
     }
     
+    /**
+     * Get the text displayer object
+     * @return the text displayer object
+     */
     public TextDisplayer getTextDisplayer() {
         return textDisplayer;
     }

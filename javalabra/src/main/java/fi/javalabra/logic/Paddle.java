@@ -12,7 +12,14 @@ public class Paddle {
     
     private int x;
     private int y;
-    
+   
+    /**
+     * Constructor for a paddle instance
+     * @param height height of the paddle
+     * @param width width of the paddle
+     * @param x X-coordinate of the upper-left corner of the paddle
+     * @param y Y-coordinate of the upper-left corner of the paddle
+     */
     public Paddle(int height, int width, int x, int y) {
         this.height = height;
         this.width = width;
@@ -21,26 +28,50 @@ public class Paddle {
         this.y = y;
     }
     
+    /**
+     * Get the height of the paddle
+     * @return the height of the paddle
+     */
     public int getHeight() {
         return height;
     }
     
+    /**
+     * Get the width of the paddle
+     * @return the width of the paddle
+     */
     public int getWidth() {
         return width;
     }
     
+    /**
+     * Get the X-coordinate of the upper-left corner of the paddle
+     * @return the coordinate
+     */
     public int getX() {
         return x;
     }
     
+    /**
+     * Get the Y-coordinate of the upper-left corner of the paddle
+     * @return the coordinate
+     */
     public int getY() {
         return y;
     }
     
+    /**
+     * Set the X-coordinate of the upper-left corner of the paddle
+     * @param x the new coordinate
+     */
     public void setX(int x) {
         this.x = x;
     }
     
+    /**
+     * Set the Y-coordinate of the upper-left corner of the paddle
+     * @param y the new coordinate
+     */
     public void setY(int y) {
         this.y = y;
     }

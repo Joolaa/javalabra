@@ -16,6 +16,13 @@ public class Block {
     
     private float hueCode;
 
+    /**
+     * Construct a new block
+     * @param height height of the block
+     * @param width width of the block
+     * @param x X-coordinate of the upper-left corner of the block
+     * @param y Y-coordinate of the upper-left corner of the block
+     */
     public Block(int height, int width, int x, int y) {
         
         this.height = height;
@@ -124,31 +131,60 @@ public class Block {
         return false;
     }
     
+    /**
+     * Get the low edge Y-coordinate
+     * @return the low edge Y-coordinate
+     */
     public int getLowEdgeY() {
         return y + height;
     }
     
+    /**
+     * Get the high edge Y-coordinate
+     * @return the hight edge Y-coordinate
+     */
     public int getHighEdgeY() {
         return y;
     }
     
+    /**
+     * Get the left edge X-coordinate
+     * @return the left edge X-coordinate
+     */
     public int getLeftEdgeX() {
         return x;
     }
     
+    /**
+     * Get the right edge X-coordinate
+     * @return the right edge X-coordinate
+     */
     public int getRightEdgeX() {
         return x + width;
     }
     
+    /**
+     * Get the width of the block
+     * @return width of the block
+     */
     public int getWidth() {
         
         return width;
     }
     
+    /**
+     * Get the height of the block
+     * @return height of the block
+     */
     public int getHeight() {
         return height;
     }
     
+    /**
+     * Get the hue code of the block, this information is used
+     * for drawing the block
+     * @return the hue code of the block
+     */
     public float getHueCode() {
         return hueCode;
     }

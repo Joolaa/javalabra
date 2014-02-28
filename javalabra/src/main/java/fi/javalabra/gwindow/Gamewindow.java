@@ -21,6 +21,13 @@ public class Gamewindow implements Runnable {
     private int height;
     private int width;
     
+    /**
+     * Construct the game window for displaying the game state visually
+     * @param height height in pixels
+     * @param width width in pixels
+     * @param renderer renderer instance to use for drawing
+     * @param keyboardControls keyboard controls instance for input
+     */
     public Gamewindow(int height, int width, Renderer renderer,
             KeyboardControls keyboardControls) {
         
@@ -45,6 +52,11 @@ public class Gamewindow implements Runnable {
         frame.setVisible(true);
     }
     
+    /**
+     * Specify the renderer instance and keyboard control instance for the
+     * window
+     * @param container the container to add the components to
+     */
     private void createComponents(Container container) {
         
         container.add(renderer);

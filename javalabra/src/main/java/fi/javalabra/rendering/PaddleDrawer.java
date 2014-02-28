@@ -12,6 +12,10 @@ public class PaddleDrawer {
     
     private Paddle paddle;
     
+    /**
+     * Constructor for this drawer
+     * @param paddle the paddle to draw
+     */
     public PaddleDrawer(Paddle paddle) {
         
         this.paddle = paddle;

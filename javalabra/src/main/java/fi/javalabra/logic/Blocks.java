@@ -15,6 +15,9 @@ public class Blocks {
     
     private boolean locked;
     
+    /**
+     * Node of a linked list with a Block as a payload
+     */
     private class BlockNode {
         
         private BlockNode next;
@@ -32,6 +35,9 @@ public class Blocks {
         }
     }
     
+    /**
+     * Constructor for Blocks-instance
+     */
     public Blocks() {
         
         this.first = null;
@@ -210,17 +216,41 @@ public class Blocks {
         return size;
     }
     
+    /**
+     * Get the lock state if you wish to check if the blocks-instance
+     * is already being used by other concurrent routine
+     * @return the lock state, true if locked
+     */
     public boolean getLocked() {
         
         return locked;
     }
     
+    /**
+     * Set lock state to true
+     */
     public void lock() {
         
         locked = true;
     }
     
+    /**
+     * Set lock state to false
+     */
     public void unlock() {
+        
+        locked = false;
+    }
+    
+    /**
+     *  Nullifies the block list and sets everything to default.
+     */
+    public void nullifyBlockList() {
+        
+        last = null;
+        first = null;
+        size = 0;
+        current = null;
         
         locked = false;
     }

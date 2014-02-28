@@ -17,8 +17,8 @@ public class Ball {
     
     /**
      * Height, width and location of the ball
-     * @param height
-     * @param width 
+     * @param height height of the ball
+     * @param width width of the ball
      * @param x horizontal location of the ball
      * @param y vertical location of the ball
      */
@@ -33,18 +33,34 @@ public class Ball {
         this.dy = 0;
     }
     
+    /**
+     * Get the height of the ball
+     * @return height of the ball
+     */
     public int getHeight() {
         return height;
     }
     
+    /**
+     * Get the width of the ball
+     * @return width of the ball
+     */
     public int getWidth() {
         return width;
     }
     
+    /**
+     * Get the X-coordinate of the upper-left corner of the ball
+     * @return the X-coordinate of the upper-left corner of the ball
+     */
     public int getX() {
         return x;
     }
     
+    /**
+     * Get the Y-coordinate of the upper-left corner of the ball
+     * @return the Y-coordinate of the upper-left corner of the ball
+     */
     public int getY() {
         return y;
     }
@@ -97,16 +113,31 @@ public class Ball {
         return x;
     }
     
+    /**
+     * Set the height and width of the ball
+     * @param height new height of the ball
+     * @param width new width of the ball
+     */
     public void setHeightAndWidth(int height, int width) {
         this.height = height;
         this.width = width;
     }
     
+    /**
+     * Set a new location for the ball
+     * @param x the new X-coordinate of the upper-left corner of the ball
+     * @param y the new Y-coordinate of the upper-left corner of the ball
+     */
     public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }
     
+    /**
+     * Set a new velocity vector for the ball
+     * @param dx velocity along the X-axis
+     * @param dy velocity along the Y-axis
+     */
     public void setVelocityVector(int dx, int dy) {
         this.dx = dx;
         this.dy = dy;

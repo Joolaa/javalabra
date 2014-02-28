@@ -124,7 +124,14 @@ public class Field {
         
     }
     
-    //return a perpendicular vector which is split with this ratio
+    /**
+     * Helper function for splitting a line to two parts with some
+     * certain ratio
+     * @param splittee the line to split
+     * @param numerator numerator of the ratio
+     * @param denominator denominator of the ratio
+     * @return the part of the line with length proportional to the denominator
+     */
     private int ratioOfVectors(int splittee, int numerator, int denominator) {
         
         if(numerator + denominator == 0)
@@ -132,6 +139,13 @@ public class Field {
         return splittee * denominator / (denominator + numerator);
     }
     
+    /**
+     * Handle a block collision situation
+     * @param ball ball to check the collision for
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     * @return true if a collision happened
+     */
     private boolean handleBlockCollisions(Ball ball, int verticalMomentum,
             int horizontalMomentum) {
         
@@ -167,6 +181,14 @@ public class Field {
         
     }
     
+    /**
+     * Handle collision with the low edge of a block
+     * @param ball ball to check the collision for
+     * @param current the block to check collision with
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     * @return true if a collision happened
+     */
     private boolean handleBlockLowCollision(Ball ball, Block current,
             int verticalMomentum, int horizontalMomentum) {
         
@@ -187,6 +209,14 @@ public class Field {
         return false;
     }
     
+    /**
+     * Handle collision with the high edge of a block
+     * @param ball ball to check the collision for
+     * @param current the block to check collision with
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     * @return true if a collision happened
+     */
     private boolean handleBlockHighCollision(Ball ball, Block current,
             int verticalMomentum, int horizontalMomentum) {
         
@@ -207,6 +237,14 @@ public class Field {
         return false;
     }
     
+    /**
+     * Handle collision with the left edge of a block
+     * @param ball ball to check the collision for
+     * @param current the block to check collision with
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     * @return true if a collision happened
+     */
     private boolean handleBlockLeftCollision(Ball ball, Block current,
             int verticalMomentum, int horizontalMomentum) {
         
@@ -226,6 +264,14 @@ public class Field {
         return false;
     }
     
+    /**
+     * Handle collision with the right edge of a block
+     * @param ball ball to check the collision for
+     * @param current the block to check collision with
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     * @return true if a collision happened
+     */
     private boolean handleBlockRightCollision(Ball ball, Block current,
             int verticalMomentum, int horizontalMomentum) {
         
@@ -245,7 +291,13 @@ public class Field {
         return false;
     }
     
-    //lineY, Y coordinate of the line to collide with
+    /**
+     * Handle collision with a vertical line
+     * @param ball the ball which collides
+     * @param lineY the position of the vertical line
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     */
     private void handleVerticalCollision(Ball ball, int lineY, 
             int verticalMomentum, int horizontalMomentum) {
         
@@ -269,7 +321,13 @@ public class Field {
         
     }
     
-    //lineX, X coordinate of the line to collide with
+    /**
+     * Handle collision with a horizontal line
+     * @param ball the ball which collides
+     * @param lineX the position of the horizontal line
+     * @param verticalMomentum vertical momentum of the ball
+     * @param horizontalMomentum horizontal momentum of the ball
+     */
     private void handleHorizontalCollision(Ball ball, int lineX,
             int verticalMomentum, int horizontalMomentum) {
         
@@ -318,28 +376,52 @@ public class Field {
             paddle.setX(x);
     }
     
+    /**
+     * Get the height of the field
+     * @return height of the field
+     */
     public int getHeight() {
         return height;
     }
     
+    /**
+     * Get the width of the field
+     * @return 
+     */
     public int getWidth() {
         return width;
     }
     
+    /**
+     * Get the ball
+     * @return the ball
+     */
     public Ball getBall() {
         return ball;
     }
     
+    /**
+     * Get the paddle
+     * @return the paddle
+     */
     public Paddle getPaddle() {
         
         return paddle;
     }
     
+    /**
+     * Get the blocks container
+     * @return blocks container
+     */
     public Blocks getBlocks() {
         
         return blocks;
     }
     
+    /**
+     * Specifies whether to use randomized velocity
+     * @param randomizeVelocity true to enable velocity randomization
+     */
     public void setRandomizeVelocity(boolean randomizeVelocity) {
         this.randomizeVelocity = randomizeVelocity;
     }
@@ -366,11 +448,19 @@ public class Field {
             ball.setVelocityVector(ball.getDX() + 1, ball.getDY());
     }
     
+    /**
+     * Set a flag which tells that the game is over
+     * @param gameOver true if the game is over
+     */
     public void setGameOver(boolean gameOver) {
         
         this.gameOver = gameOver;
     }
     
+    /**
+     * Get the information about whether the game is over
+     * @return true if the game is over
+     */
     public boolean getGameOver() {
         
         return gameOver;

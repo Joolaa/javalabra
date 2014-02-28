@@ -13,6 +13,10 @@ public class BlockDrawer {
     
     private Blocks blocks;
     
+    /**
+     * Construct an instance of this drawer
+     * @param blocks the blocks-container for the blocks to draw
+     */
     public BlockDrawer(Blocks blocks) {
         
         this.blocks = blocks;
